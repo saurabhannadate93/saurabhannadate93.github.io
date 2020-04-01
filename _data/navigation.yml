@@ -1,12 +1,12 @@
 # main links
 main:
-  - title: "Quick-Start Guide"
+  - title: "Data Science"
     url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
-  - title: "About"
+  - title: "Photography"
     url: https://www.linkedin.com/in/saurabhannadate93/
-  # - title: "Sample Posts"
-  #   url: /year-archive/
-  # - title: "Sample Collections"
-  #   url: /collection-archive/
+  - title: "CV"
+   url: https://www.linkedin.com/in/saurabhannadate93/
+  - title: "Contact"
+    url: https://www.linkedin.com/in/saurabhannadate93/
   # - title: "Sitemap"
   #   url: /sitemap/
