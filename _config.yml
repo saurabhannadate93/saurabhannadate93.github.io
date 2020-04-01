@@ -1,3 +1,7 @@
 name: Saurabh Annadate
 markdown: kramdown
-theme: minima
+
+plugins:
+  - Add jekyll-include-cache
+
+Add remote_theme: "mmistakes/minimal-mistakes@4.19.1"
