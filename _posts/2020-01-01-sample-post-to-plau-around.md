@@ -3,10 +3,14 @@ title: "Sample post to play around"
 categories:
   - blog
 
-header:
-  image: "assets/images/Cover_Image.PNG"
-  caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
-  tagline: "Hello There, this is sample"
+#tags:
+#  - 
+
+
+#header:
+#  image: "assets/images/Cover_Image.PNG"
+#  caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
+#  tagline: "Hello There, this is sample"
   
 ---
 
