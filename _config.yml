@@ -20,7 +20,7 @@ title                    : "Saurabh Annadate"
 title_separator          : "-"
 subtitle                 : "Premature Optimization is the root cause of all evil!" # site tagline that appears below site title in masthead
 name                     : "Saurabh Annadate"
-description              : "An amazing website."
+description              : "A log of all my data science projects"
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -93,11 +93,11 @@ analytics:
 
 # Site Author
 author:
-  name             : "Your Name"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an **amazing** person."
-  location         : "Somewhere"
-  email            :
+  name             : "Saurabh Annadate"
+  avatar           : "/assets/images/Cover_Image.png" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  bio              : "Data scientist, Photographer and a self-proclaimed chef"
+  location         : "Tysons, VA"
+  email            : saurabhannadate2020@u.northwestern.edu
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
