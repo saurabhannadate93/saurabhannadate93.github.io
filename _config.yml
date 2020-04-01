@@ -12,7 +12,7 @@
 
 # theme                  : "minimal-mistakes-jekyll"
 remote_theme           : "mmistakes/minimal-mistakes"
-minimal_mistakes_skin    : "air" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise". "default"
+minimal_mistakes_skin    : "mint" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise". "default"
 
 # Site Settings
 locale                   : "en-US"
@@ -97,11 +97,11 @@ author:
   avatar           : "assets/images/Cover_Image.PNG" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Data scientist, Photographer and a self-proclaimed chef"
   location         : "Tysons, VA"
-  email            : saurabhannadate2020@u.northwestern.edu
+  email            : "saurabhannadate2020@u.northwestern.edu"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      # url: mailto:your.name@email.com
+      url: mailto:saurabhannadate2020@u.northwestern.edu
     - label: "Website"
       icon: "fas fa-fw fa-link"
       # url: "https://your-website.com"
@@ -110,13 +110,13 @@ author:
       # url: "https://twitter.com/"
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook-square"
-      # url: "https://facebook.com/"
+      url: "https://www.facebook.com/sannadate"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url: "https://github.com/"
+      url: "https://github.com/saurabhannadate93"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
-      # url: "https://instagram.com/"
+      url: "https://www.instagram.com/saurabhannadate/"
 
 # Site Footer
 footer:
@@ -262,10 +262,10 @@ tag_archive:
 # HTML Compression
 # - https://jch.penibelst.de/
 compress_html:
+
   clippings: all
   ignore:
     envs: development
-
 
 # Defaults
 defaults:
