@@ -18,7 +18,7 @@ minimal_mistakes_skin    : "mint" # "air", "aqua", "contrast", "dark", "dirt", "
 locale                   : "en-US"
 title                    : "Saurabh Annadate"
 title_separator          : "-"
-subtitle                 : "Premature Optimization is the root cause of all evil!" # site tagline that appears below site title in masthead
+subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Saurabh Annadate"
 description              : "A log of all my data science projects"
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
@@ -93,9 +93,9 @@ analytics:
 
 # Site Author
 author:
-  name             : "Saurabh Annadate"
+  name             :
   avatar           : "assets/images/Cover_Image.PNG" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Data scientist, Photographer and a self-proclaimed chef"
+  bio              : "Data scientist, Photographer and a self-proclaimed chef. Currently coddiwompling through life"
   location         : "Tysons, VA"
   email            :
   links:
