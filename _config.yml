@@ -4,4 +4,5 @@ markdown: kramdown
 plugins:
   - Add jekyll-include-cache
 
+# Link: https://github.com/mmistakes/minimal-mistakes
 Add remote_theme: "mmistakes/minimal-mistakes@4.19.1"
