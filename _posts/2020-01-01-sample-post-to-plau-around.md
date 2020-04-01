@@ -5,9 +5,9 @@ categories:
 
 header:
   overlay_image: "assets/images/Cover_Image.PNG"
-  excerpt: "Hello There"
-  overlay_filter: 0.5
-  show_overlay_excerpt: false
+  tagline: "Hello There, this is sample"
+  overlay_filter: 0.2
+  show_overlay_excerpt: true
 ---
 
 Saurabh check : You'll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
