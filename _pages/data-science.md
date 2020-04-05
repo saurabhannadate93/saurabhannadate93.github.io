@@ -1,9 +1,8 @@
 ---
-title: #No Need to put this!!
+title: 'Recent Posts' #Do not change
 layout: collection
 permalink: /data-science/
 collection: data-science
-# entries_layout: grid
 classes: wide
 author_profile: true
 ---
