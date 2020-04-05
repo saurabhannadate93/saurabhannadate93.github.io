@@ -1,7 +1,7 @@
 ---
 permalink: /about/
 title: "About"
-permalink: /home/
+
 scope:
   type: pages
 ---
