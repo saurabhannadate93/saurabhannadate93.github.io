@@ -3,6 +3,9 @@ title: "Sample post to play around"
 categories:
   - blog
 
+classes:
+  - wide
+
 #tags:
 #  - 
 
