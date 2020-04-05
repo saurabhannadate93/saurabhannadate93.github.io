@@ -9,5 +9,3 @@ author_profile: true
 classes:
     - wide
 ---
-
-{% assign filtered_posts = site.posts | where: 'my_prop', nil %}

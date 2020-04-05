@@ -278,3 +278,8 @@ defaults:
       comments: true
       share: true
       related: true
+
+collections:
+  data-science:
+    output: true
+    permalink: /:collection/:path/
