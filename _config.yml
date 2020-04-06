@@ -278,20 +278,3 @@ defaults:
       comments: true
       share: true
       related: true
-  
-  # _data-science
-  - scope:
-      path: ""
-      type: data-science
-    values:
-      layout: single
-      author_profile: true
-      read_time: true
-      comments: true
-      share: true
-      related: true
-
-collections:
-  data-science:
-    output: true
-    permalink: /:collection/:path/
