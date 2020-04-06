@@ -2,13 +2,6 @@
 ---
 # Only the main Sass file needs front matter (the dashes are enough)
 ---
-
-.site-subtitle {
-    display: block;
-    font-size: $type-size-8;
-    font-style: italic;
-  }
-
 @charset "utf-8";
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
