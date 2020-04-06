@@ -8,7 +8,7 @@ scope:
 
 Hello there
 
-<form name="contactform" method="post" action="send_form_email.php">
+<form name="contactform" method="post" action="_pages/send_form_email.php">
 <table width="450px">
 <tr>
  <td valign="top">
