@@ -18,7 +18,7 @@ minimal_mistakes_skin    : "contrast" # "air", "aqua", "contrast", "dark", "dirt
 locale                   : "en-US"
 title                    : "Saurabh Annadate"
 title_separator          : "-"
-subtitle                 : "< ## Premature Optimization is the root cause of all evil ## >" # site tagline that appears below site title in masthead
+subtitle                 : "Premature Optimization is the root cause of all evil" # site tagline that appears below site title in masthead
 name                     : "Saurabh Annadate"
 description              : "This site contains blog posts of all data science projects that I have worked on."
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
