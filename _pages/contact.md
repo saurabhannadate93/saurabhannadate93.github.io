@@ -1,13 +1,13 @@
 ---
 permalink: /contact/
-title: "Contact"
+title: "contact"
+layout: single
 author_profile: true
-
-scope:
-  type: pages
 
 classes:
     - wide
+scope:
+  type: pages
 ---
 
 Stranger, Friend, Collaborator, Potential Employer, I would love to hear from you!
