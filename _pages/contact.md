@@ -13,7 +13,7 @@ scope:
 
 <br>
 
-Want to Collaborate? Friend, Stranger, potential future employer? I would love to hear from you! Reach out to me directly through <i class="fab fa-facebook-square"></i><a href="https://www.facebook.com/sannadate">Facebook</a>, <i class="fab fa-linkedin-in"></i> <a href="https://www.linkedin.com/in/saurabhannadate93/">LinkedIn</a>, or <i class="fas fa-fw fa-envelope-square"></i><a href="mailto:saurabhannadate2020@u.northwestern.edu">Email</a>.
+Want to Collaborate? Friend, Stranger, potential future employer? I would love to hear from you! Reach out to me directly through <i class="fab fa-facebook-square"></i><a href="https://www.facebook.com/sannadate">Facebook</a>, <i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/saurabhannadate93/">LinkedIn</a>, or <i class="fas fa-fw fa-envelope-square"></i><a href="mailto:saurabhannadate2020@u.northwestern.edu">Email</a>.
 
 <br>
 <br>
@@ -22,7 +22,7 @@ Want to Collaborate? Friend, Stranger, potential future employer? I would love t
 Lumen Apartments,<br>
 1747 Tysons Central Street,<br>
 Apt 1913,<br>
-Tysons, VA 22182<br>
+Tysons, VA 22182
 
 </font>
 
