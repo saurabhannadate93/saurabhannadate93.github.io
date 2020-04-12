@@ -5,7 +5,7 @@
 
 layout: home
 author_profile: true
-permalink: /home/
+permalink: /blog/
 
 classes:
     - wide
