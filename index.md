@@ -10,6 +10,6 @@ classes:
 ---
 <br><br>
 
-Hi! Welcome to my personal website. 
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/NTIa28b7xrw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+Hi! Welcome to my world! 
+<br>
+My name is Saurabh Annadate and this is my personal website. It is an amalgamation of the several different important parts of myself. 
