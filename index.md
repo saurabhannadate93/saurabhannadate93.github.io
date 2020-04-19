@@ -17,11 +17,11 @@ header:
 
 <br>
 
+![image-right]({{ site.url }}{{ site.baseurl }}/assets/images/Index_1.jpg){: .align-right}
+
 Hi There! 
 
 <br><br>
-
-![image-right](/assets/images/Index_1.jpg){: .align-right}
 
 My name is Saurabh Annadate and this is my personal website. It is an amalgamation of the several different important parts of myself. I am currently working as a Senior Associate, Data Science at Capital One in Tysons, VA in the Customer Credit Risk Management department. Here I am responsible for building and and administering predictive analytics solutions to understand customer behavior to predict charge-off and estimate the overall dollar risk to Capital One for Allowance calculations.  
 
