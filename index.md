@@ -33,4 +33,4 @@ Prior to joining Capital One, I graduated from Northwestern University having co
 
 Outside of everything data, I love the mountains. As much as I am scared of height, the sheer magnificence of the himalayas attract me, and you will often find in some hill station cafe or trekking in the himalayas during my breaks. Over the past few years, I have travelled and trekked extensively across Himachal Pradesh, J&K, Leh/Ladakh and Darjeeling. I wish to pursue the ABC and the EBC treks as soon as I get the opportunity. I am also an avid photographer, and I try to capture life moments whenever I can.
 
-In my spare time, I'm interested in learning more on health and nutrition, getting fitter, playing around with coding projects, improving my cooking skills, reading books, and reading people!
+In my spare time, I'm interested in learning more on health and nutrition, getting fitter, playing around with coding projects, improving my cooking skills, exploring new places to eat, reading books, and reading people!
