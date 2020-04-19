@@ -4,11 +4,6 @@ main:
     url: https://saurabhannadate93.github.io/blog/
   - title: "Through My Lens"
     url: https://saurabhannadate93.github.io/Through-My-Lens/
-    children:
-      - title: "Videos"
-        url: https://saurabhannadate93.github.io/Through-My-Lens/
-      - title: "Photos"
-        url: https://saurabhannadate93.github.io/Through-My-Lens/
   - title: "CV"
     url: https://github.com/saurabhannadate93/saurabhannadate93.github.io/raw/master/assets/cv/saurabhannadate.pdf
   - title: "Contact"
