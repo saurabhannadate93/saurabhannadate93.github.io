@@ -17,7 +17,10 @@ header:
 
 <br>
 
-![image-right]({{ site.url }}{{ site.baseurl }}/assets/images/Index_1.jpg){: .align-right}
+<figure style="width: 300px" class="align-right">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Index_1.jpg" alt="">
+  <figcaption>Caption</figcaption>
+</figure> 
 
 Hi There! 
 
