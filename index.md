@@ -13,13 +13,12 @@ header:
 
 ---
 
-<font size="+2">
+<font size="+2"><p align = "justify>
 
 <br>
 
 <figure style="width: 300px" class="align-right">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Index_1.jpg" alt="">
-  <figcaption>Caption</figcaption>
 </figure> 
 
 Hi There! 
@@ -35,5 +34,5 @@ I am keenly interested in understanding and leveraging the power of data analyti
 <br> <br>
 
 
-
+</p>
 </font>
