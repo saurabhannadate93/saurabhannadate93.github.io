@@ -9,7 +9,7 @@ scope:
   type: pages
 ---
 
-Click [here](https://www.flickr.com/photos/112174302@N04/){: .btn} to check out my flickr photostream!
+Click [here](https://www.flickr.com/photos/112174302@N04/){: .btn .btn--primary} to check out my Flickr photostream!
 
 <br>
 A Video that I made during my trek to Chanderkhani Pass in June 2017: <br>
