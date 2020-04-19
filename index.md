@@ -25,7 +25,7 @@ I am currently working as a Senior Associate, Data Science at Capital One in Tys
 
 I am keenly interested in understanding and leveraging the power of data analytics to solve business problems. In my free time, I constantly try to explore new topics in the data science realm. I am currently focussing on upskilling myself in ML engoineering (building production pipelines arould ML models, which includes testing, explainability, reproducibility, monitoring etc.) and modelling for Natural Language Processing.
 
-<figure style="width: 300px" class="align-left">
+<figure style="width: 400px" class="align-left">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/sandakphu.jpg" alt="">
 </figure> 
 
