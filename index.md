@@ -8,8 +8,6 @@ author_profile: true
 classes:
     - wide
 ---
-<br><br>
-
 Hi! Welcome to my world! 
 <br>
 My name is Saurabh Annadate and this is my personal website. It is an amalgamation of the several different important parts of myself. 
