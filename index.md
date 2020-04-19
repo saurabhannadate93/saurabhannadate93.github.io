@@ -7,6 +7,10 @@ author_profile: true
 
 classes:
     - wide
+
+header:
+  image: /assets/images/index_header.jpg
+
 ---
 Hi! Welcome to my world! 
 <br>
