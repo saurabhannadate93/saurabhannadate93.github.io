@@ -8,8 +8,8 @@ author_profile: true
 classes:
     - wide
 
-# header:
-#   image: /assets/images/index_header.jpg
+header:
+  image: /assets/images/index_header.jpg
 
 ---
 
