@@ -12,6 +12,15 @@ header:
   image: /assets/images/index_header.jpg
 
 ---
-Hi! Welcome to my world! 
+
+<font size="+2">
+
 <br>
+
+Hi there! 
+
+<br>
+
 My name is Saurabh Annadate and this is my personal website. It is an amalgamation of the several different important parts of myself. 
+
+</font>
