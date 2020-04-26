@@ -83,10 +83,10 @@ As established earlier, Prescription Opioid Abuse is a pertinent problem to tack
 
 ## METHODOLOGY OF THE ANALYSIS
 
-1. **Dataset**
+- **Dataset**
 <br>To perform this analysis, we were given a 4-years long longitudinal view of events for MAPD members currently enrolled with Humana. The dataset had ~6mn records and 20 columns. Data for 16 different types of events including calls, medical claims, diagnoses, provider, and pharmacy claims with each event having its own set of attributes was provided. The time stamps were relative with the anchor point being the first naive opioid event observed post the first year and having the time stamp as Day 0. A naive opioid event is defined as the patient getting an opioid prescription while not having had opioid on hand for 90 days prior. We had the data for 14,000 deidentified unique patients. <br><br> Exploratory Data Analysis was performed to understand the distributions as well as data quality. Several quality issues and nuances like multiple prescriptions on the same day, missing Day 0 records, missing dosage volumes etc. were identified and highlighted.  
 
-2. **Computing Target**
+- **Computing Target**
 <br> Our aim was to understand whether there is an occurance of an LTOT event post a naive opioid event. As mentioned before, an LTOT event is defined as having opioid on hand for at least 90% of days in the 180 days period post a naive opioid event. A naive opioid event is defined as the first prescription of opioid by a doctor for pain or any other illnesses. There are different ways an LTOT can occur after the naive opioid event (Day 0) has occurred. Figure 4 illustrates the two cases where LTOT was observed. In case 1, an LTOT event is observed for the opioid naive event at Day 0 itself since the patient has opioid on hand for >90% of days within the 180 days period post Day 0. In case 2, LTOT is not observed for the first naive opioid event, however is observed for a naive opioid event occurring at Day 120. For all occurrences of such cases, the target for modelling was set as 1, and rest as 0.
 
 <figure style="width: 600px" class="align-center">
@@ -95,10 +95,10 @@ As established earlier, Prescription Opioid Abuse is a pertinent problem to tack
 </figcaption>
 </figure>
 
-We observed that the incidence of LTOT in the training data was ~46%. Hence, it was a fairly balanced dataset.
+  We observed that the incidence of LTOT in the training data was ~46%. Hence, it was a fairly balanced dataset.
 
-4. **Feature Engineering**
-For feature engineering, we explored and extracted features from each of the sixteen types of events - prescription, change of doctors, new disease etc. which could be reflective of the patient's behavior. The features generated broadly fell under the constructs of cost, recency and frequency. Literature review also indicated that incidence of certain conditions like anxiety, depression, heart disease, etc. were good indicators of future opioid abuse [5]. Hence, on the basis of the presence of certain keywords in the claim descriptions, we extracted disease specific attributes to capture these nuances. A total of 479 features were constructed. For most of the features which included aggregation across time, we defined three different time buckets, and aggregated the features for each of these. The time buckets were:
+- **Feature Engineering**
+<br> For feature engineering, we explored and extracted features from each of the sixteen types of events - prescription, change of doctors, new disease etc. which could be reflective of the patient's behavior. The features generated broadly fell under the constructs of cost, recency and frequency. Literature review also indicated that incidence of certain conditions like anxiety, depression, heart disease, etc. were good indicators of future opioid abuse [5]. Hence, on the basis of the presence of certain keywords in the claim descriptions, we extracted disease specific attributes to capture these nuances. A total of 479 features were constructed. For most of the features which included aggregation across time, we defined three different time buckets, and aggregated the features for each of these. The time buckets were:
     - 0 to 180 days prior to Day 0
     - 180 to 360 days prior to Day 0
     - 360+ days prior to Day 0 
@@ -111,7 +111,7 @@ For feature engineering, we explored and extracted features from each of the six
 </figcaption>
 </figure>
 
-5. **Modeling**
+- **Modeling**
 <br> After computation of our target and engineered the features, the next step was modelling. In order to quickly iterate through different models and hyperparameter sets, we utilized the open source automated machine learning module of [H2O.ai](http://docs.h2o.ai/h2o/latest-stable/h2o-docs/automl.html). This module provided an API to automatically fit Random Forests, Extremely Randomized Trees, Logistic Regression and Gradient Boosting trees (both XGBoost and H2O implementation) on our final processed patient level dataset and performed random grid hyperparameter search and 5-fold cross validation to ascertain the best performing model. Since our problem was a binary classification problem, the objective function that was minimized was binary cross-entropy. The top performing model was a [XGBoost gradient boosting](https://machinelearningmastery.com/gentle-introduction-xgboost-applied-machine-learning/) tree classifier. The modelling workflow is depicted in Figure 6.
 
 <figure style="width: 600px" class="align-center">
