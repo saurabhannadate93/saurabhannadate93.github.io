@@ -30,7 +30,7 @@ The 2019 Humana-Mays Healthcare Analytics Case Competition involved two levels o
 
 
 <figure style="width: 800px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/Figure1.jpg" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/Figure1.png" alt="">
   <figcaption>Figure 1: Competition Timeline
 </figcaption>
 </figure>
@@ -56,7 +56,7 @@ Hence, it is imperative for proactive identification of individuals who are at a
 ## WHAT IS THE SOLUTION?
 
 <figure style="width: 600px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/Figure2.jpg" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/Figure2.png" alt="">
   <figcaption>Figure 2: Proposed Solution
 </figcaption>
 </figure>
@@ -68,7 +68,7 @@ We proposed and built a two-fold solution for this problem (Figure 2):
 ## HOW DOES THE SOLUTION IMPACTS STAKEHOLDERS?
 
 <figure style="width: 600px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/Figure3.jpg" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/Figure3.png" alt="">
   <figcaption>Figure 3: Positive Impact for all stakeholders
 </figcaption>
 </figure>
@@ -84,7 +84,7 @@ As established earlier, Prescription Opioid Abuse is a pertinent problem to tack
 <br> Our aim was to understand whether there is an occurance of an LTOT event post a naive opioid event. As mentioned before, an LTOT event is defined as having opioid on hand for at least 90% of days in the 180 days period post a naive opioid event. A naive opioid event is defined as the first prescription of opioid by a doctor for pain or any other illnesses. There are different ways an LTOT can occur after the naive opioid event (Day 0) has occurred. Figure 4 illustrates the two cases where LTOT was observed. In case 1, an LTOT event is observed for the opioid naive event at Day 0 itself since the patient has opioid on hand for >90% of days within the 180 days period post Day 0. In case 2, LTOT is not observed for the first naive opioid event, however is observed for a naive opioid event occurring at Day 120. For all occurrences of such cases, the target for modelling was set as 1, and rest as 0.
 
 <figure style="width: 600px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/Figure4.jpg" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/Figure4.png" alt="">
   <figcaption>Figure 4: LTOT Definitions
 </figcaption>
 </figure>
@@ -100,7 +100,7 @@ For feature engineering, we explored and extracted features from each of the six
     <br>As shown in Figure 5, all of our features fell into 4 buckets: costs, recency, frequency and disease attributes with an added dimension of time. 
 
 <figure style="width: 600px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/Figure5.jpg" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/Figure5.png" alt="">
   <figcaption>Figure 5: 479 engineered features fell in 4 buckets
 </figcaption>
 </figure>
@@ -109,7 +109,7 @@ For feature engineering, we explored and extracted features from each of the six
 <br> After computation of our target and engineered the features, the next step was modelling. In order to quickly iterate through different models and hyperparameter sets, we utilized the open source automated machine learning module of [H2O.ai](http://docs.h2o.ai/h2o/latest-stable/h2o-docs/automl.html). This module provided an API to automatically fit Random Forests, Extremely Randomized Trees, Logistic Regression and Gradient Boosting trees (both XGBoost and H2O implementation) on our final processed patient level dataset and performed random grid hyperparameter search and 5-fold cross validation to ascertain the best performing model. Since our problem was a binary classification problem, the objective function that was minimized was binary cross-entropy. The top performing model was a [XGBoost gradient boosting](https://machinelearningmastery.com/gentle-introduction-xgboost-applied-machine-learning/) tree classifier. The modelling workflow is depicted in Figure 6.
 
 <figure style="width: 600px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/Figure6.jpg" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/Figure6.png" alt="">
   <figcaption>Figure 6: Modelling Process
 </figcaption>
 </figure>
@@ -118,7 +118,7 @@ For feature engineering, we explored and extracted features from each of the six
 Table 1 shows the performance metrics for the model. All metrics are average 5-fold cross validation metrics. As we can see, the model has an area under the ROC curve of 0.8045 which indicates that the model has a good performance. Furthermore, it also has good overall accuracy, precision, recall and F1-score. We wanted to check how the model would perform if we only take the top 20 variables as identified by the feature importance from the model. 
 
 <figure style="width: 600px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/Table1.jpg" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/Table1.PNG" alt="">
   <figcaption>Table 1: Model Performance Metrics
 </figcaption>
 </figure>
@@ -126,7 +126,7 @@ Table 1 shows the performance metrics for the model. All metrics are average 5-f
 And as we can see, the model performance does not degrade if we consider only the top 20 variables indicating that these variables provide the maximum signal. Furthermore, a look at the probability distributions for the training data as shown in Figure 7 reflect the findings that the model is doing a good job of classifying a particular patient as LTOT probable or not.
 
 <figure style="width: 600px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/Figure7.jpg" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/Figure7.png" alt="">
   <figcaption>Figure 7: Predicted Probability Distribution for Training Data
 </figcaption>
 </figure>
@@ -136,7 +136,7 @@ And as we can see, the model performance does not degrade if we consider only th
 In order to interpret the effects of the different features on the probability of LTOT, we decided to use the SHapley Additive exPlanations ([SHAP](https://github.com/slundberg/shap)) plots. Following are the top 20 most impactful features as identified by the algorithm:
 
 <figure style="width: 600px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/Table2.jpg" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/Table2.PNG" alt="">
   <figcaption>Table 2: Top 20 most impactful variables
 </figcaption>
 </figure>
@@ -161,7 +161,7 @@ Following are the key takeaways:
 Now that we had developed our model, we wanted to develop a solution to make the model readily available for utilization by the decision-making stakeholders. For the same, we developed a proof of concept for an application in Python Flask which served as a one-click solution to ingest data, train model, provide predictions and track model performance. We named the application Patient+ and Figure 8 illustrates the home page of the application.
 
 <figure style="width: 600px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/Figure8.jpg" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/Figure8.png" alt="">
   <figcaption>Figure 8: Patient+ home page
 </figcaption>
 </figure>
@@ -175,7 +175,7 @@ We developed three modules of functionality in our application -
 ❖	**Retrain Model and Batch Predict**: This module provided a one-click solution to retrain the model using new data or predict probabilities for new set of patients
 
 <figure style="width: 600px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/Figure9.jpg" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/Figure9.png" alt="">
   <figcaption>Figure 9: Patient+ Patient Score View
 </figcaption>
 </figure>
@@ -197,7 +197,7 @@ While the analysis provides a lot of insights and a potential solution to tackle
 1. **Model Lifecycle** <br><br> As time passes and new data is administered, the underlying data relationships can change and the model performance can degrade. To prevent the model from being unusable, the model performance should be tracked and the model retrained using new data if the performance degrades. Figure 10 depicts the model lifecycle.
 
 <figure style="width: 600px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/Figure10.jpg" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/Figure10.png" alt="">
   <figcaption>Figure 10: Lifecycle of a model 
 </figcaption>
 </figure>
@@ -205,13 +205,13 @@ While the analysis provides a lot of insights and a potential solution to tackle
 2. **Model Validation** <br><br>The current model is built using the method of cross-validation for model hyperparameter optimization and model selection. Since we need to use past data to predict future, this methodology may not yield a good model to predict on future data. We recommend implementing out-of-time validation to tackle the same wherein the validation set is constituted of future data points. The current format of the data with actual dates masked was not conducive to conduct this. Figure 11 and Figure 12 depict cross validation and out-of-time validation respectively.
 
 <figure style="width: 600px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/Figure11.jpg" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/Figure11.png" alt="">
   <figcaption>Figure 11: Cross Validation 
 </figcaption>
 </figure>
 
 <figure style="width: 600px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/Figure12.jpg" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/Figure12.png" alt="">
   <figcaption>Figure 12: Out of Time validation 
 </figcaption>
 </figure>
