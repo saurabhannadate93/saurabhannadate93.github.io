@@ -16,7 +16,7 @@ This paper was written to record our experience as the 2nd place winners and rec
 
 <figure style="width: 800px" class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/CoverImage.jpg" alt="">
-  <figcaption text-align="center">hahahaLeft to Right: <br> Heather Cox (Chief Digital Health and Analytics Officer, Humana), Saurabh Annadate, Tanya Tandon, Arvind Mahajan (Associate Dean for graduate program, Mays Business School, Texas A&M University)
+  <figcaption class="align-center">Left to Right: <br> Heather Cox (Chief Digital Health and Analytics Officer, Humana), Saurabh Annadate, Tanya Tandon, Arvind Mahajan (Associate Dean for graduate program, Mays Business School, Texas A&M University)
 </figcaption>
 </figure>
 
