@@ -14,7 +14,7 @@ classes:
 
 <style>
 figcaption {
-  text-align: right;
+  text-align: center;
 }
 </style>
 
