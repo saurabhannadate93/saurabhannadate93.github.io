@@ -198,7 +198,7 @@ While the analysis provides a lot of insights and a potential solution to tackle
 
 ## RECOMMENDATIONS FOR IMPLEMENTING Patient+
 
-1. **Model Lifecycle** <br><br> As time passes and new data is administered, the underlying data relationships can change and the model performance can degrade. To prevent the model from being unusable, the model performance should be tracked and the model retrained using new data if the performance degrades. Figure 10 depicts the model lifecycle.
+- **Model Lifecycle** <br> As time passes and new data is administered, the underlying data relationships can change and the model performance can degrade. To prevent the model from being unusable, the model performance should be tracked and the model retrained using new data if the performance degrades. Figure 10 depicts the model lifecycle.
 
 <figure style="width: 600px" class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/Figure10.png" alt="">
@@ -206,7 +206,7 @@ While the analysis provides a lot of insights and a potential solution to tackle
 </figcaption>
 </figure>
 
-2. **Model Validation** <br><br>The current model is built using the method of cross-validation for model hyperparameter optimization and model selection. Since we need to use past data to predict future, this methodology may not yield a good model to predict on future data. We recommend implementing out-of-time validation to tackle the same wherein the validation set is constituted of future data points. The current format of the data with actual dates masked was not conducive to conduct this. Figure 11 and Figure 12 depict cross validation and out-of-time validation respectively.
+- **Model Validation** <br>The current model is built using the method of cross-validation for model hyperparameter optimization and model selection. Since we need to use past data to predict future, this methodology may not yield a good model to predict on future data. We recommend implementing out-of-time validation to tackle the same wherein the validation set is constituted of future data points. The current format of the data with actual dates masked was not conducive to conduct this. Figure 11 and Figure 12 depict cross validation and out-of-time validation respectively.
 
 <figure style="width: 600px" class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/Figure11.png" alt="">
