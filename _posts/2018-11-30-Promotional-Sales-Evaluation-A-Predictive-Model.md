@@ -5,7 +5,9 @@ categories:
   - data-science
 tags:
   - hackathon
-  - machine learning 
+  - machine learning
+header:
+  - image: /assets/images/Humana/CoverImage.jpg 
 classes:
     - wide
 ---
