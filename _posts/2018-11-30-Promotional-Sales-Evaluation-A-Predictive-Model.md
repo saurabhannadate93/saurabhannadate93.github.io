@@ -16,18 +16,15 @@ figcaption {
 }
 </style>
 
-
-## Executive Summary
-
-Our model attempted to predict whether a customer would respond to a promotion given
-by an online bookstore, in addition to potential purchase amount. The most significant predictors for this process as a whole are purchase frequency and the interaction of amount and frequency for the History category. For the classification process, a multitude of predictors have been identified as significant, including the variables recency, time on file, time-sensitive variables for purchase behavior over different time periods, and categorical variables, both aggregated and individual categories. A smaller subset of variables, including frequency, amount, amount per order, amount per book brought, and the History categorical variables have proved significant in
-predicting the order amount for the customers that have responded to the promotion. In terms of payoff, the overall model is able to predict with ~25% accuracy as compared to the actual
-response data from the test dataset.
+<figure style="width: 800px" class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Bookstore/bookstore.jpg" alt="">
+  <figcaption class="align-center">Pic for illustration purposes only (Credits: nytimes.com)
+</figcaption>
+</figure>
 
 ## Introduction
 
-The overall goal of this project involved predicting whether a given customer will
-respond to a specific promotion, and how much they will spend if they do respond. Almost all of the given data relies on time, in some variety, since the best way to predict future purchases is to observe overall purchase history among customers. We focused on the importance of the “time factor” in numerous ways in our analysis, hypothesizing that partitioning data based on date ordered would prove extremely beneficial. Therefore, we concentrated on creating new variables
+The overall goal of this project involved predicting whether a given customer will respond to a specific promotional activity, and how much they will spend if they do respond. Almost all of the given data relies on time, in some variety, since the best way to predict future purchases is to observe overall purchase history among customers. We focused on the importance of the “time factor” in numerous ways in our analysis, hypothesizing that partitioning data based on date ordered would prove extremely beneficial. Therefore, we concentrated on creating new variables
 dependent on the time frame of an order, hoping to find a “sweet spot”of time since the last order that would make a customer most likely to buy again. Our section on data cleaning and
 exploratory data analysis details our methods for creating these time-sensitive variables, along with their interactions, in the hopes of creating a successful predictive model.
 Another goal of ours involved exhaustively searching the data for any relevant variables,
