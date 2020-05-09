@@ -17,7 +17,7 @@ figcaption {
 </style>
 
 <figure style="width: 800px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Bookstore/bookstore.jpg" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/bookstore/bookstore.jpg" alt="">
   <figcaption class="align-center">Pic for illustration purposes only (Credits: nytimes.com)
 </figcaption>
 </figure>
