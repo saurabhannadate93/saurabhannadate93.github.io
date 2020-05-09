@@ -1,5 +1,5 @@
 ---
-title: "Promotional Sales Evaluation"
+title: "Bookstore Promotional Activity : Predicted Sales Evaluation"
 last_modified_at: 2018-11-30T17:00:00-00:00
 categories:
   - data-science
