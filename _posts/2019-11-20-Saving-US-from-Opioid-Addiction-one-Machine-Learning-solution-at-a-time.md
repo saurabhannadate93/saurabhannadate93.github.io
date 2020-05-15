@@ -8,6 +8,8 @@ tags:
   - machine learning 
 classes:
     - wide
+header:
+  teaser: "assets/images/Humana/teaser.jpg"
 ---
 
 <style>

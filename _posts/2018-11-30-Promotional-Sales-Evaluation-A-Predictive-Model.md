@@ -12,6 +12,8 @@ tags:
   - Variance Inflation Factors
 classes:
     - wide
+header:
+  teaser: "assets/images/bookstore/bookstore.jpg"
 ---
 
 <style>
