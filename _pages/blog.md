@@ -6,6 +6,9 @@ permalink: /blog/
 classes:
     - wide
 
+intro: 
+  - excerpt: ' '
+
 feature_row1:
   - image_path: /assets/images/Humana/teaser.jpg
     alt: "Saving US from Opioid Addiction one Machine Learning solution at a time"
@@ -28,4 +31,4 @@ feature_row2:
 
 {% include feature_row id="feature_row1" type="left" %}
 
-{% include feature_row id="feature_row2" type="left" %}
+{% include feature_row id="feature_row2" type="right" %}
