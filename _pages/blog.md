@@ -7,7 +7,7 @@ classes:
     - wide
 
 intro: 
-  - excerpt: ' Saurabh Annadate'
+  - excerpt: '     '
 
 feature_row1:
   - image_path: /assets/images/Humana/teaser.jpg
@@ -28,6 +28,8 @@ feature_row2:
     btn_class: "btn--primary"
 
 ---
+
+{% include feature_row id="intro" type="center" %}
 
 {% include feature_row id="feature_row1" type="left" %}
 
