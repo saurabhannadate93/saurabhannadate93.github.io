@@ -7,7 +7,7 @@ classes:
     - wide
 
 intro: 
-  - excerpt: ' '
+  - excerpt: ' Saurabh Annadate'
 
 feature_row1:
   - image_path: /assets/images/Humana/teaser.jpg
