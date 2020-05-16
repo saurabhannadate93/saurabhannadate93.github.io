@@ -1,12 +1,21 @@
 ---
-# You don't need to edit this file, it's empty on purpose.
-# Edit theme's home layout instead if you wanna make some changes
-# See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
-layout: home
+layout: s[lash]
 author_profile: true
 permalink: /blog/
 
 classes:
     - wide
+
+feature_row1:
+  - image_path: /assets/images/Humana/teaser.jpg
+    alt: "Saving US from Opioid Addiction one Machine Learning solution at a time"
+    title: "Saving US from Opioid Addiction one Machine Learning solution at a time"
+    excerpt: 'Saving US from Opioid Addiction one Machine Learning solution at a time'
+    url: "http://saurabhannadate.com/data-science/Saving-US-from-Opioid-Addiction-one-Machine-Learning-solution-at-a-time/"
+    btn_label: "Read More"
+    btn_class: "btn--primary"
+
 ---
+
+{% include feature_row id="feature_row1" type="left" %}
