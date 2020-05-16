@@ -1,6 +1,6 @@
 ---
 
-layout: s[lash]
+layout: splash
 author_profile: true
 permalink: /blog/
 
