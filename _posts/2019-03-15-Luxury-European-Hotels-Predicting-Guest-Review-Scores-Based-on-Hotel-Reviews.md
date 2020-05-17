@@ -49,18 +49,18 @@ The goal of this analysis was to predict the score, on a scale from 1 (lowest) t
 </figcaption>
 </figure>
 
-In order to generate our predictions, we examined a set of 515,738 reviews with data about the hotel, the reviewer and some elements of the review besides the score, which we augmented by parsing text tags, transforming features, and pulling in outside weather data. We fit the resulting data with several supervised learning models to generate a predicted score for each review. Gradient boosting trees provided the best fit for our data, accounting for **42.8%** of the variance of reviews in our test set. We found that, unsurprisingly, the ratio of positive words to negative words in the review was the strongest predictor of the reviewer score. Other important predictors were the distance from the city center, the total length of the review and the high and low temperatures for the day of the hotel visit. Our primary conclusion was that factors available outside of the review provided limited predictive power as to how a reviewer would respond.
+In order to generate our predictions, we examined a set of 515,738 reviews with data about the hotel, the reviewer and some elements of the review besides the score, which we augmented by parsing text tags, transforming features, and pulling in outside weather data. We fit the resulting data with several supervised learning models to generate a predicted score for each review. Gradient boosting trees provided the best fit for our data, accounting for 42.8% of the variance of reviews in our test set. We found that, unsurprisingly, the ratio of positive words to negative words in the review was the strongest predictor of the reviewer score. Other important predictors were the distance from the city center, the total length of the review and the high and low temperatures for the day of the hotel visit. Our primary conclusion was that factors available outside of the review provided limited predictive power as to how a reviewer would respond.
 
 ## INTRODUCTION
 
-As our world becomes increasingly digital, more and more consumers are relying on online reviews to help them decide what to buy, where to travel, and where to stay. Especially in the hotel review industry, these online customer reviews can make or break a business. According to surveys conducted by Trip Advisor and Trust You (siteminder.com): 
+As our world becomes increasingly digital, more and more consumers are relying on online reviews to help them decide what to buy, where to travel, and where to stay. Especially in the hotel review industry, these online customer reviews can make or break a business. According to surveys conducted by Trip Advisor and Trust You [4]: 
 
-1. 88% of travellers filter out hotels with an average star rating below three [on a scale of one to five]
-2. 32% eliminated those with a rating below four
-3. 96% consider reviews important when researching a hotel
-4. 79% will read between six and 12 reviews before making a purchase decision
-5. Four out of five believe a hotel that responds to reviews cares more about its customers
-6. 85% agree that a thoughtful response to a review will improve their impression of the hotel
+- 88% of travellers filter out hotels with an average star rating below three [on a scale of one to five]
+- 32% eliminated those with a rating below four
+- 96% consider reviews important when researching a hotel
+- 79% will read between six and 12 reviews before making a purchase decision
+- Four out of five believe a hotel that responds to reviews cares more about its customers
+- 85% agree that a thoughtful response to a review will improve their impression of the hotel
 
 We have a dataset from [Kaggle](https://www.kaggle.com/), originally scraped from Booking.com, with information on 515,738 reviews covering 1,493 unique luxury hotels in Europe. We will be predicting the rating that each user will give a particular hotel based on a stay. We will identify how different attributes of each hotel and each customer impact the review score, and identify whether a particular type of customer has a propensity to provide a positive or a negative review. Our analysis can help a hotel identify its loyal group of customers and the areas of service in which it excels. This can help drive future rebranding, marketing and customer service strategy and also help identify gaps where a hotel could potentially improve.
 
@@ -112,7 +112,11 @@ As shown in Figure 1 below, our response variable was fairly well distributed an
 </figcaption>
 </figure>
 
-Based on the variables available to us, we focused on 4 distinct feature groups: features of the guest, the distinct perks of each hotel, outside factors that could affect the customer’s stay, and finally, features of the review itself.
+Based on the variables available to us, we focused on 4 distinct feature groups:
+- features of the guest
+- distinct perks of each hotel
+- outside factors that could affect the customer’s stay
+- features of the review text itself
 
 To determine a hotel’s “usual” guest, we used the customer tags related to each stay. The tags included information such as whether the trip was for leisure or business, whether the guest was traveling with a family, the length of stay, and the type of room. We started by aggregating these at a hotel level to assign tags to the hotels. We only aggregated the tags from highly rated reviews so the tags would be indicative of that hotel’s particular expertise. We then used TF-IDF (Term Frequency - Inverse Document Frequency) to determine the importance of each tag, by using each tag as a term and the hotel’s aggregated tags as the document. We ended up with 7 broad categories: trip type, room type, luxury room type, view type, access type, time of stay, and whether the guest was provided free services. For each of these categories, every hotel was assigned its top tag, i.e. tags for which it received great reviews. Once we had the hotel tags, we created a compatibility score variable that captured hotel and customer compatibility. We assigned the customer tags to each of the 7 broad categories. We then compared the customer tags to the hotel tags for each of the categories, adding one to the compatibility score for each tag that matched.
 
@@ -161,49 +165,53 @@ Finally, we focused on features of the review itself. Our original data included
 To summarize, the final features we used to fit our models are listed below:
 
 **Customer Features**
+
 | Feature | Description |
 |----|----|
-| tourists	| A person is a tourist if his home country does not match his country of stay |
-| Reviewer_sub_region	| Home region of the reviewer, aggregated into sub-regions | 
-| log_num_reviews_given	| Log of number of reviews given by the particular reviewer | 
-| access_type_cust	| Access type provided to the customer, eg. pool access, spa access | 
-| accessibility_cust	| Accessibility of the room | 
-| free_cust	| Any free services provided to the customer | 
-| other_cust	| Miscellaneous room/hotel features | 
-| other_room_types_cust	| Luxury room or not | 
-| room_type_cust	| Non-luxury room type that the customer stayed in | 
-| time_of_stay_cust	| Length of stay | 
-| trip_type_cust	| Type of trip that the customer was on, e.g. business or leisure | 
-| view_type_cust	| Whether or not the guest’s room had a view | 
-| CommonScore	| Compatibility score for customer and hotel | 
+| tourists | A person is a tourist if his home country does not match his country of stay |
+| Reviewer_sub_region | Home region of the reviewer, aggregated into sub-regions |
+| log_num_reviews_given | Log of number of reviews given by the particular reviewer |
+| access_type_cust | Access type provided to the customer, eg. pool access, spa access |
+| accessibility_cust | Accessibility of the room |
+| free_cust | Any free services provided to the customer |
+| other_cust | Miscellaneous room/hotel features |
+| other_room_types_cust | Luxury room or not |
+| room_type_cust | Non-luxury room type that the customer stayed in |
+| time_of_stay_cust | Length of stay |
+| trip_type_cust | Type of trip that the customer was on, e.g. business or leisure |
+| view_type_cust | Whether or not the guest’s room had a view |
+| CommonScore | Compatibility score for customer and hotel |
 
 **Hotel Features**
+
 | Feature | Description |
 |----|----|
-| access_type	| Most favoured access type | 
-| accessibility	| Whether accessibility rooms are available | 
-| free	| Top free service provided by the hotel | 
-| other_room_types	| Luxury room available or not | 
-| room_type	| Top standard room available in the hotel | 
-| time_of_stay	| Favoured length of stay (short or long) | 
-| trip_type	| Top trip type for the hotel | 
-| view_type	| Whether rooms with views are available | 
-| City	| The city in which the hotel is located | 
-| distance	| The distance of the hotel from the respective city's city centre | 
+| access_type | Most favoured access type |
+| accessibility | Whether accessibility rooms are available |
+| free | Top free service provided by the hotel |
+| other_room_types | Luxury room available or not |
+| room_type | Top standard room available in the hotel |
+| time_of_stay | Favoured length of stay (short or long) |
+| trip_type | Top trip type for the hotel |
+| view_type | Whether rooms with views are available |
+| City | The city in which the hotel is located |
+| distance | The distance of the hotel from the respective city's city centre |
 
 
 **External Features**
+
 | Feature | Description |
 |----|----|
-| TempHigh	| The high temperature on the date the review is submitted | 
-| TempLow	| The low temperature on the date the review is submitted | 
-| weather_summary	| Categorical variable describing the weather on the date of review | 
+| TempHigh | The high temperature on the date the review is submitted |
+| TempLow | The low temperature on the date the review is submitted |
+| weather_summary | Categorical variable describing the weather on the date of review |
 
 **Review Features**
+
 | Feature | Description |
 |----|----|
-| pct_postive	| The percent of total review words in the positive section of the review, weighted toward 0.5 for reviews with low total number of words | 
-| log_review_word_count	| Combined positive and negative word counts, under a log transformation | 
+| pct_postive | The percent of total review words in the positive section of the review, weighted toward 0.5 for reviews with low total number of words |
+| log_review_word_count | Combined positive and negative word counts, under a log transformation |
 
 ## MODEL FITTING AND VALIDATION
 
@@ -343,9 +351,6 @@ We would have liked to have had a more powerful predictive model when using only
 - [Tony Colucci](https://www.linkedin.com/in/anthony-colucci-710659112/)
 - [Tanya Tandon](https://www.linkedin.com/in/tanya-tandon/)
 - [Saurabh Annadate](https://www.linkedin.com/in/saurabhannadate93/)
-
-## LINKS
-- [Dataset](https://www.kaggle.com/jiashenliu/515k-hotel-reviews-data-in-europe)
 
 ## REFERENCES
 1. Dark Sky, darksky.net/dev
