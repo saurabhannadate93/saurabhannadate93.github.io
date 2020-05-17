@@ -11,6 +11,7 @@ tags:
   - Gradient Boosted Trees
   - Random Forest
   - MARS
+  - TF-IDF
   - Machine learning 
 classes:
     - wide
@@ -55,11 +56,6 @@ The original dataset included 17 different variables. Each reviewer leaves certa
 
 **Hotel Specific Information:**
 
-|   |   |   |   |   |
-|---|---|---|---|---|
-|   |   |   |   |   |
-
-
 | Field | Description |
 |-------|-------------|
 | Hotel_Name	| Name of the hotel |
@@ -81,8 +77,7 @@ The original dataset included 17 different variables. Each reviewer leaves certa
 
 | Field | Description |
 |-------|-------------|
-| Reviewer_Score	| Score the reviewer has given to the hotel, based on his/her experience 
-(this is the response variable in our models) |
+| Reviewer_Score	| Score the reviewer has given to the hotel, based on his/her experience (this is the response variable in our models) |
 | Negative_Review	| What the reviewer wrote in the “negative” or “cons” section of the review | 
 | Review_Total_Negative_Word_Counts	| Total number of words in the negative review section |
 | Positive_Review	| What the reviewer wrote in the “positive” or “pros” section of the review |
@@ -91,7 +86,54 @@ The original dataset included 17 different variables. Each reviewer leaves certa
 | Review_Date	| Date when reviewer posted the corresponding review |
 | days_since_review	| Duration between the review date and scrape date |
 
+## EXPLORATORY DATA ANALYSIS AND FEATURE ENGINEERING
 
+As shown in Figure 1 below, our response variable was fairly well distributed and covered a wide range of the rating scale, with a minimum score of 2.5 and a maximum of 10. 
+
+<figure style="width: 800px" class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/hotel_review/Fig1.PNG" alt="">
+  <figcaption class="align-center"> Figure 1: Review Score distribution
+</figcaption>
+</figure>
+
+Based on the variables available to us, we focused on 4 distinct feature groups: features of the guest, the distinct perks of each hotel, outside factors that could affect the customer’s stay, and finally, features of the review itself.
+
+To determine a hotel’s “usual” guest, we used the customer tags related to each stay. The tags included information such as whether the trip was for leisure or business, whether the guest was traveling with a family, the length of stay, and the type of room. We started by aggregating these at a hotel level to assign tags to the hotels. We only aggregated the tags from highly rated reviews so the tags would be indicative of that hotel’s particular expertise. We then used TF-IDF (Term Frequency - Inverse Document Frequency) to determine the importance of each tag, by using each tag as a term and the hotel’s aggregated tags as the document. We ended up with 7 broad categories: trip type, room type, luxury room type, view type, access type, time of stay, and whether the guest was provided free services. For each of these categories, every hotel was assigned its top tag, i.e. tags for which it received great reviews. Once we had the hotel tags, we created a compatibility score variable that captured hotel and customer compatibility. We assigned the customer tags to each of the 7 broad categories. We then compared the customer tags to the hotel tags for each of the categories, adding one to the compatibility score for each tag that matched.
+
+Another feature we created about each guest was whether a customer was a tourist. We defined “tourist” as a customer who was not from the same country as the hotel. If the hotel’s address matched the customer’s nationality, the customer was not marked as a tourist. We also analyzed the home country of each guest. As we had 227 unique countries, we decided to aggregate these into 18 sub-regions. Figure 2 shows the percentage of guests from each sub-region.
+
+<figure style="width: 800px" class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/hotel_review/Fig2.PNG" alt="">
+  <figcaption class="align-center"> Figure 2: Guest Origination Country Distribution
+</figcaption>
+</figure>
+
+Finally, we used the number of reviews given by a reviewer as a feature as well. We log transformed this variable as this was heavily right skewed, as you can see from the histogram below.
+
+<figure style="width: 800px" class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/hotel_review/Fig3_1.PNG" alt="">
+</figure>
+
+<figure style="width: 800px" class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/hotel_review/Fig3_2.PNG" alt="">
+  <figcaption class="align-center"> Figure 3: Distribution for the total number of reviews given by a guest (above) and log transformed (below)
+</figcaption>
+</figure>
+
+Secondly, we analyzed the perks of each hotel. The first variable we created was the hotel city, which we extracted from the address. The hotel reviews take place in the following six cities: 
+
+| Vienna, Austria | Paris, France | Milan, Italy | Amsterdam, Netherlands | Barcelona, Spain | London, United Kingdom |
+|---|---|---|---|---|---|
+| 38,939 | 59,928 | 37,207 | 57,214 | 60,149 | 262,301 |
+| 8% | 12% | 7% | 11% | 12% | 51% |
+
+We also thought it would be interesting to have a feature which notes the distance from the city centre. A consistent characteristic of European cities is a central city centre that is also a public transportation hub. We hypothesize that hotels closer to the city centre would receive a higher rating as this would improve the guest’s overall experience due to accessibility and proximity to tourist destinations. 
+
+Additionally, we focused on external factors affecting the quality of a stay. We hypothesized that the weather could affect whether a stay was pleasant. To create these features, we pulled historical weather data for each review using the Dark Sky API (darksky.net/dev), based on the hotel city and the review date (as a proxy for the stay date). We created features from the high and low temperature. We also used the summary to find the most common types of weather, and created a weather summary feature with 7 factors: breezy, clear, cloudy, foggy, humid, rain, and snow. 
+
+Finally, we focused on features of the review itself. Our original data included the text and word count of the user review split out into positive and negative sections. We calculated a sum of the word counts from these positive and negative review sections then log-transformed that aggregate count, to correct for the heavily right-skewed distribution. In order to summarize the ratio of positive to negative words in the review, we generated the pct_positive variable, which is the percent of total review words in the positive section. We weighted this towards the middle for reviews with fewer than 50 words, under the assumption that people who wrote fewer words potentially felt less strongly than those who wrote more words. We weighted percent positive using the following formula:
+
+$$pct_positive = (positive word count ÷50) - (total word count ÷100)  + 0.5$$
 
 
 
