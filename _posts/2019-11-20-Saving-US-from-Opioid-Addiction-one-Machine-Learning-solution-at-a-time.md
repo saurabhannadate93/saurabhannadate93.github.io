@@ -16,6 +16,12 @@ header:
 figcaption {
   text-align: center;
 }
+
+p {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
 </style>
 
 This paper was written to record our experience as the 2nd place winners and recipients of a $15,000 reward in the [2019 Humana-Mays Healthcare Analytics Case Competition](https://www.humanatamuanalytics.com/) amongst 480 participating teams from across the US.
