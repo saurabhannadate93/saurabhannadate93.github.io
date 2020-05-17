@@ -19,15 +19,6 @@ feature_row1:
     btn_class: "btn--primary"
 
 feature_row2:
-  - image_path: /assets/images/bookstore/bookstore.jpg
-    alt: "Bookstore Promotional Activity : Predicting Sales"
-    title: "Bookstore Promotional Activity : Predicting Sales"
-    excerpt: 'The goal of this project was to predict using statistical modeling whether a given customer will respond to a promotional email sent out by an online bookstore, and how much they will spend on buying books if they do respond.'
-    url: "http://saurabhannadate.com/data-science/Promotional-Sales-Evaluation-A-Predictive-Model/"
-    btn_label: "Continue Reading"
-    btn_class: "btn--primary"
-
-feature_row3:
   - image_path: assets/images/hotel_review/hotelimage.jpg
     alt: "Luxury European Hotels: Predicting Guest Review Scores Based on Hotel Reviews"
     title: "Luxury European Hotels: Predicting Guest Review Scores Based on Hotel Reviews"
@@ -36,6 +27,14 @@ feature_row3:
     btn_label: "Continue Reading"
     btn_class: "btn--primary"
 
+feature_row3:
+  - image_path: /assets/images/bookstore/bookstore.jpg
+    alt: "Helping an Online bookstore quantify the impact of their promotion strategy"
+    title: "Helping an Online bookstore quantify the impact of their promotion strategy"
+    excerpt: 'The goal of this project was to predict using statistical modeling whether a given customer will respond to a promotional email sent out by an online bookstore, and how much they will spend on buying books if they do respond.'
+    url: "http://saurabhannadate.com/data-science/Promotional-Sales-Evaluation-A-Predictive-Model/"
+    btn_label: "Continue Reading"
+    btn_class: "btn--primary"
 
 ---
 
