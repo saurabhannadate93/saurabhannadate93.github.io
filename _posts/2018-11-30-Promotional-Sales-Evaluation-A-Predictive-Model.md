@@ -1,5 +1,5 @@
 ---
-title: "Bookstore Promotional Activity : Predicting Sales"
+title: "Helping an Online bookstore quantify the impact of their promotion strategy"
 last_modified_at: 2018-11-30T17:00:00-00:00
 categories:
   - data-science
