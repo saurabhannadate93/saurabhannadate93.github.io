@@ -22,6 +22,16 @@ p {
   text-justify: inter-word;
 }
 
+ul {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+ol {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
 </style>
 
 This paper was written to record our experience as the 2nd place winners and recipients of a $15,000 reward in the [2019 Humana-Mays Healthcare Analytics Case Competition](https://www.humanatamuanalytics.com/) amongst 480 participating teams from across the US.
@@ -93,7 +103,7 @@ As established earlier, Prescription Opioid Abuse is a pertinent problem to tack
 <br>To perform this analysis, we were given a 4-years long longitudinal view of events for MAPD members currently enrolled with Humana. The dataset had ~6mn records and 20 columns. Data for 16 different types of events including calls, medical claims, diagnoses, provider, and pharmacy claims with each event having its own set of attributes was provided. The time stamps were relative with the anchor point being the first naive opioid event observed post the first year and having the time stamp as Day 0. A naive opioid event is defined as the patient getting an opioid prescription while not having had opioid on hand for 90 days prior. We had the data for 14,000 deidentified unique patients. <br><br> Exploratory Data Analysis was performed to understand the distributions as well as data quality. Several quality issues and nuances like multiple prescriptions on the same day, missing Day 0 records, missing dosage volumes etc. were identified and highlighted.  
 
 - **Computing Target**
-<br> Our aim was to understand whether there is an occurance of an LTOT event post a naive opioid event. As mentioned before, an LTOT event is defined as having opioid on hand for at least 90% of days in the 180 days period post a naive opioid event. A naive opioid event is defined as the first prescription of opioid by a doctor for pain or any other illnesses. There are different ways an LTOT can occur after the naive opioid event (Day 0) has occurred. Figure 4 illustrates the two cases where LTOT was observed. In case 1, an LTOT event is observed for the opioid naive event at Day 0 itself since the patient has opioid on hand for >90% of days within the 180 days period post Day 0. In case 2, LTOT is not observed for the first naive opioid event, however is observed for a naive opioid event occurring at Day 120. For all occurrences of such cases, the target for modelling was set as 1, and rest as 0.<br>We observed that the incidence of LTOT in the training data was ~46%. Hence, it was a fairly balanced dataset.
+<br> Our aim was to understand whether there is an occurance of an LTOT event post a naive opioid event. As mentioned before, an LTOT event is defined as having opioid on hand for at least 90% of days in the 180 days period post a naive opioid event. A naive opioid event is defined as the first prescription of opioid by a doctor for pain or any other illnesses. There are different ways an LTOT can occur after the naive opioid event (Day 0) has occurred. Figure 4 illustrates the two cases where LTOT was observed. In case 1, an LTOT event is observed for the opioid naive event at Day 0 itself since the patient has opioid on hand for >90% of days within the 180 days period post Day 0. In case 2, LTOT is not observed for the first naive opioid event, however is observed for a naive opioid event occurring at Day 120. For all occurrences of such cases, the target for modelling was set as 1, and rest as 0.<br><br>We observed that the incidence of LTOT in the training data was ~46%. Hence, it was a fairly balanced dataset.
 
 <figure style="width: 600px" class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/Figure4.png" alt="">
