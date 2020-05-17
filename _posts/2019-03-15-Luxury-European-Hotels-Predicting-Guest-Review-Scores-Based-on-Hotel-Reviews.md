@@ -133,7 +133,7 @@ Additionally, we focused on external factors affecting the quality of a stay. We
 
 Finally, we focused on features of the review itself. Our original data included the text and word count of the user review split out into positive and negative sections. We calculated a sum of the word counts from these positive and negative review sections then log-transformed that aggregate count, to correct for the heavily right-skewed distribution. In order to summarize the ratio of positive to negative words in the review, we generated the pct_positive variable, which is the percent of total review words in the positive section. We weighted this towards the middle for reviews with fewer than 50 words, under the assumption that people who wrote fewer words potentially felt less strongly than those who wrote more words. We weighted percent positive using the following formula:
 
-$$pct_positive = (positive word count ÷50) - (total word count ÷100)  + 0.5$$
+*pct_positive = (positive word count ÷50) - (total word count ÷100)  + 0.5* {: style="text-align: center;"}
 
 
 
@@ -147,4 +147,4 @@ $$pct_positive = (positive word count ÷50) - (total word count ÷100)  + 0.5$$
 - [Saurabh Annadate](https://www.linkedin.com/in/saurabhannadate93/)
 
 ## LINKS
-- Dataset: https://www.kaggle.com/jiashenliu/515k-hotel-reviews-data-in-europe
+- [Dataset](https://www.kaggle.com/jiashenliu/515k-hotel-reviews-data-in-europe)

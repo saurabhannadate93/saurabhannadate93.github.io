@@ -203,7 +203,7 @@ beneficial. A customer who frequently engages customer service representatives c
 - [Saurabh Annadate](https://www.linkedin.com/in/saurabhannadate93/)
 
 ## LINKS
-- Github: https://github.com/saurabhannadate93/Online-BookStore-Promotion-Response
+- [Github](https://github.com/saurabhannadate93/Online-BookStore-Promotion-Response)
 
 ## REFERENCES
 1. Tamhane, Ajit C. Predictive Analytics: Parametric Models for Regression and Classification Using R. (Wiley Series in Probability and Statistics)
