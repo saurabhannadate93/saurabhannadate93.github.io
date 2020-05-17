@@ -54,7 +54,13 @@ We have a dataset from [Kaggle](https://www.kaggle.com/), originally scraped fro
 The original dataset included 17 different variables. Each reviewer leaves certain pros and cons for a particular hotel and a rating for the hotel from 1 (lowest) to 10 (highest). We also had additional information, which fell into three broad categories: hotel specific information, guest specific information and stay or review specific information. The variables are listed below:
 
 **Hotel Specific Information:**
-| Field | Description|
+
+|   |   |   |   |   |
+|---|---|---|---|---|
+|   |   |   |   |   |
+
+
+| Field | Description |
 |-------|-------------|
 | Hotel_Name	| Name of the hotel |
 | Hotel_Address	| Address of the hotel |
@@ -63,6 +69,30 @@ The original dataset included 17 different variables. Each reviewer leaves certa
 | Total_Number_of_Reviews	| Total number of valid reviews that a hotel has been given on booking.com |
 | Additional_Number_of_Scoring	| There are also some guests who just made a scoring on the service rather than a review - This number indicates how many valid scores a hotel has without a review |
 | Average_Score	| Average score of the hotel, calculated based on the latest comment in the last year |
+
+**Reviewer Specific Information**
+
+| Field | Description |
+|-------|-------------|
+| Reviewer_Nationality	| Nationality of the reviewer |
+| Total_Number_of_Reviews_Reviewer_Has_Given	| Number of reviews the reviewer has given in the past on Booking.com |
+
+**Stay Specific Information**
+
+| Field | Description |
+|-------|-------------|
+| Reviewer_Score	| Score the reviewer has given to the hotel, based on his/her experience 
+(this is the response variable in our models) |
+| Negative_Review	| What the reviewer wrote in the “negative” or “cons” section of the review | 
+| Review_Total_Negative_Word_Counts	| Total number of words in the negative review section |
+| Positive_Review	| What the reviewer wrote in the “positive” or “pros” section of the review |
+| Review_Total_Positive_Word_Counts	| Total number of words in the positive review section |
+| Tags	| Tags reviewer gave the hotel |
+| Review_Date	| Date when reviewer posted the corresponding review |
+| days_since_review	| Duration between the review date and scrape date |
+
+
+
 
 
 
