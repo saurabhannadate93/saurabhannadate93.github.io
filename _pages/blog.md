@@ -27,6 +27,16 @@ feature_row2:
     btn_label: "Continue Reading"
     btn_class: "btn--primary"
 
+feature_row3:
+  - image_path: assets/images/hotel_review/hotelimage.jpg
+    alt: "Luxury European Hotels: Predicting Guest Review Scores Based on Hotel Reviews"
+    title: "Luxury European Hotels: Predicting Guest Review Scores Based on Hotel Reviews"
+    excerpt: 'The goal of this project was to predict using statistical modeling and machine learning the score, on a scale from 1 (lowest) to 10 (highest) that a reviewer will give after a stay at a luxury hotel in one of six European cities.'
+    url: "http://saurabhannadate.com/data-science/Luxury-European-Hotels-Predicting-Guest-Review-Scores-Based-on-Hotel-Reviews/"
+    btn_label: "Continue Reading"
+    btn_class: "btn--primary"
+
+
 ---
 
 {% include feature_row id="intro" type="center" %}
