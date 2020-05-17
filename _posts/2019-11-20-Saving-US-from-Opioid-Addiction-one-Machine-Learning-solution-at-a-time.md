@@ -225,7 +225,7 @@ While the analysis provides a lot of insights and a potential solution to tackle
 
 We would like to thank Humana Inc. and Texas A&M Mays Business School for organizing the competition and providing us with the opportunity to work on the problem. A big shout out to the administrative team for the smooth execution and student partners - Samuel Pete, Cory Stockhoff and Ally Mullen for their kind assistance with everything. 
 
-## Team Members
+## TEAM MEMBERS
 - [Tanya Tandon](https://www.linkedin.com/in/tanya-tandon/)
 - [Saurabh Annadate](https://www.linkedin.com/in/saurabhannadate93/)
 
