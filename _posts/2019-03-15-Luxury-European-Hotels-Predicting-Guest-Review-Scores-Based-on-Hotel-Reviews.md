@@ -23,22 +23,6 @@ header:
 figcaption {
   text-align: center;
 }
-
-p {
-  text-align: justify;
-  text-justify: inter-word;
-}
-
-ul {
-  text-align: justify;
-  text-justify: inter-word;
-}
-
-ol {
-  text-align: justify;
-  text-justify: inter-word;
-}
-
 </style>
 
 The goal of this analysis was to predict the score, on a scale from 1 (lowest) to 10 (highest) that a reviewer will give after a stay at a luxury hotel in one of six European cities.
