@@ -230,8 +230,112 @@ As you can see from the plot above, there are three predictors this tree kept: p
 The model had a training R-squared of 35.48% (3.3.2) and a cross validated R-squared of 35.37%. Running multiple replicates of cross validation, the model had an R-squared of 35.35% (3.3.5). Finally, using the model to predict for the test set resulted in an R-squared of 34.75% (3.3.4). This was very close to the training R-squared, indicating that our model is not overfitting on the training data. If we used a slightly lower initial complexity parameter (.0001 instead of .001), the R-squared was slightly higher at about 37% (3.3.6). However, the tree was then very large (even with pruning back to a complexity parameter within one standard error) and lost all interpretability. We therefore used the more interpretable model with the slightly lower test R-squared of 34.75%. This R-squared is slightly higher than the test R-squared of the linear model, which is 32.57%.
 
 ### GRADIENT BOOSTED REGRESSION TREE
-Start here
+We then fit a boosted tree model using the *XGBoost* package in R. We chose this package as opposed to the *gbm* package from class due to the significant increase in speed and inline use of parallel processing, allowing for significantly faster fitting of our models. While fitting the model we chose the appropriate number of trees to grow and how large of trees to grow by assessing the prediction R-squared. 
 
+The model-fitting process involved building different models using our training data with different values for various parameters and tracking the performance of each model against the test data. The primary tuning parameters we worked with were the shrinkage parameter (*eta* in the XGBoost package) and how large to build the individual trees (controlled by the *max_depth* parameter). We were able to assign a large max number of trees (typically 5000) and the *xgb.train* function would identify the tree with the lowest RMSE over the test set. After tuning these parameters, using the cross section of shrinkage parameters between 0.01 and 1 and tree depth from 2 to 7, we found the best model used a shrinkage parameter of 0.1 and a tree depth of 6, fitting over 720 trees for a maximum test R-squared of 42.8%.
+
+<figure style="width: 800px" class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/hotel_review/Fig6.png" alt="">
+  <figcaption class="align-center"> Figure 6: Number of trees vs Test Set RMSE
+</figcaption>
+</figure>
+
+We used the xgboostExplainer package to delve into the specific effects of our most important variables on our boosted tree model. We first used the importance calculation within the xgb.train package to identify those variables that contributed the most predictive power. From the graph below, we can see that pct_positive was by far the most predictive feature, followed by distance and temperature during visit.
+
+<figure style="width: 800px" class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/hotel_review/Fig7.png" alt="">
+  <figcaption class="align-center"> Figure 7: Feature Importances for GBM
+</figcaption>
+</figure>
+
+The xgboostExplainer then compiled the overall effect each feature had on each observation in the test data. Unsurprisingly, more positive reviews caused the model to predict higher scores, though the model was not quite linear, flattening out at the high end of the scale.
+
+<figure style="width: 800px" class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/hotel_review/Fig8.png" alt="">
+  <figcaption class="align-center"> Figure 8: Feature Impact for pct_positive feature
+</figcaption>
+</figure>
+
+None of the other variables had nearly as well defined of a relationship with scores, though they can provide some insight as to the underlying relationships. The model appeared to predict higher scores for hotels closer to their respective city center, but it also appeared that this feature was isolating individual hotels, so we were probably accounting for some information outside of just distance in these effects.
+
+<figure style="width: 800px" class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/hotel_review/Fig9.PNG" alt="">
+  <figcaption class="align-center"> Figure 9: Feature Impact for Distance from the city center (left) and log of Review Word Count (right)
+</figcaption>
+</figure>
+
+The total word count in a review stayed largely flat until a certain point then fell off somewhat with some significant negative effects in the high values.
+
+### RANDOM FOREST
+We fit a Random Forest model on the training data to predict the Reviewer score. Since our dataset was very large, we decided to sample down our dataset to only using 10% of observations (38,661 observations) for hyperparameter optimization and model fitting. To tune the parameters, we used *mtry*(Number of variables randomly sampled as candidates at each split) as 5 and 10, and *nodesize*(Minimum size of terminal nodes) as 10 and 20. The optimum parameters were mtry = 5 and nodesize = 20 which provided the best OOB (Out of bag) R-squared of 37.82%. The *ntree*(Number of trees to grow) parameter was fixed at 100. 
+
+<figure style="width: 800px" class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/hotel_review/Fig10.png" alt="">
+  <figcaption class="align-center"> Figure 10: Out of Bag error vs number of trees
+</figcaption>
+</figure>
+
+We used the above tuned parameters to fit our model. Since we used a 10% sample of our data, we decided to fit the model with the optimized parameters on 4 different samples to eliminate any random sampling bias. The out of bag R-squared results were 37.87%, 38.03%, 37.77% and 37.92%. We used each of these four models to predict the scores in our test set. Taking an average of those errors, we got a test R-squared of 38.60%.
+
+<figure style="width: 800px" class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/hotel_review/Fig11.png" alt="">
+  <figcaption class="align-center"> Figure 11: Feature Importances for Random Forest
+</figcaption>
+</figure>
+
+As we can see from the variable importance plot above, the most variable which explained the most variance was the percent of positive words in the review given. The length of review word count and the reviewer sub-region also impacted the review score by a significant amount. These three variables were the same ones that the simple tree model found to be important. The other important important variables are hotel city, distance from city center, and temperature. Below are the main effects plots for some of the most important variables:
+
+<figure style="width: 800px" class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/hotel_review/Fig12.png" alt="">
+  <figcaption class="align-center"> Figure 12: Feature Impact charts for the most important features as identified by Random Forest
+</figcaption>
+</figure>
+
+1. **Pct_positive**: As expected, the higher the percentage of positive words in the review, the higher the review score
+2. **Log_review_word_count**: The longer the review is, the more likely it is that the reviewer score will be low. We can conclude that negative reviews are generally longer than positive reviews.
+3. **Distance**: As the distance of the hotel from the city center increases, the Reviewer score decreases. This shows that the location and surroundings of the hotel also matters to customers
+4. **TempHigh** and **TempLow**: Both the TempHigh and TempLow chart show the same story. As the temperature becomes colder or hotter, the probability of a positive review reduces.
+
+### MULTIVARIATE ADAPTIVE REGRESSION (MARS)
+[MARS](http://uc-r.github.io/mars) is an alternate approach to capture non-linearity of a model by assessing cutpoints (knots) similar to step functions. The procedure fits multiple linear models to each dataset, one line for each knot. The following example from UC Business Analytics shows graphs for one knots and two knots:
+
+<figure style="width: 800px" class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/hotel_review/Fig13.PNG" alt="">
+  <figcaption class="align-center"> Figure 13: MARS model example
+</figcaption>
+</figure>
+
+
+The procedure can be fit until many knots are found. However, choosing the number of knots again comes down to the bias-variance trade-off present in the rest of our models. If we fit a higher number of knots, the variance will be high and the bias will be low (and will also lead to overfitting). 
+
+We fit a MARS model on the training data using the earth package. By default, the function will prune to the optimal number of knots based on an expected change in the R-squared of the training data. This calculation is performed by the Generalised cross-validation procedure (GCV statistic). For our data, we started by fitting a simple model with no interactions and we had a train R-squared of 36.04% and a test R-squared of 35.48%.
+
+<figure style="width: 800px" class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/hotel_review/Fig14.png" alt="">
+  <figcaption class="align-center"> Figure 14: MARS model selection
+</figcaption>
+</figure>
+
+We also tried to include higher degree = 2,3,4 (interactions) in our model but it did not improve the model significantly and was computationally more expensive.
+
+The earth package also includes a backward elimination feature selection routine that looks at reduction in the GCV estimate of error as each predictor is added to the model. This total reduction is used as the variable importance measure. The variable importance chart is below: 
+
+<figure style="width: 800px" class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/hotel_review/Fig15.png" alt="">
+  <figcaption class="align-center"> Figure 14: Feature Importances for MARS
+</figcaption>
+</figure>
+
+The result was very similar to our previous models with pct_positve as the most important predictor.  The other important variables are: trip_type, distance, reviwer_sub_region, room_type, and word_count in a decreasing order. 
+
+### OTHER CONSIDERATIONS
+We also considered a slightly different analysis. We were interested in predicting the review score without using any of the variables about the actual review, i.e. removing log_review_word_count, percent_positive, and log_number_reviews_given from our predictor set. This will give a prediction based on only the things the hotel will know about a guest the moment they walk through the door, such as nationality of reviewer, the weather, and whether the customer is on a business trip. This would help a hotel consider how to treat each individual guest, perhaps by recommending different amenities, or providing additional services to guests traveling with young families. However, these models did not perform very well. We ran a simple tree model, and using a very low initial complexity parameter, our test R-squared was 9.5%. This is worse than even the base model R-squared of 13%, which just used each hotel’s average score as a prediction for Reviewer_Score. We therefore focused on the original analysis which includes the review variables.
+
+### CONCLUSION
+
+In conclusion, gradient boosted tree model was the best at predicting the Reviewer Score.  This model had the highest test R-squared of 42.8%, compared to Random Forest (38.60%), MARS (35.48%), Simple Tree Regression (34.75%), and the Linear Regression (32.57%).  Unsurprisingly, in all of the models, pct_positive was consistently the most important predictor. The Boosted Tree model also found that the total word count in a review had significant negative effects on the review score at very large word counts. The distance from the city centre was also an important variable, however, we believe this may have been a proxy for the individual hotel, and capturing other effects rather than just distance. Finally, both the Boosted Tree and the Random Forest models found that guests did not like extremely hot or cold temperatures.
+
+We would have liked to have had a more powerful predictive model when using only the guest and hotel features, and none of the review information.  It would also have been interesting to have had a Reviewer ID variable, so we would have been able to ipsatize the ratings, to account for users who rate everything very high, or rate everything very low. Additionally, some more demographic information about the reviewers could have helped to improve the predictions. 
 
 ## TEAM MEMBERS
 - [Michel Leroy](https://www.linkedin.com/in/sarah-michel-leroy/)
@@ -242,3 +346,9 @@ Start here
 
 ## LINKS
 - [Dataset](https://www.kaggle.com/jiashenliu/515k-hotel-reviews-data-in-europe)
+
+## REFERENCES
+1. Dark Sky, darksky.net/dev
+2. Liu, Jason. “515K Hotel Reviews Data in Europe.” Kaggle, 21 Aug. 2017, www.kaggle.com/jiashenliu 515k-hotel-reviews-data-in-europe
+3. “Multivariate Adaptive Regression Splines.” Multivariate Adaptive Regression Splines · UC Business Analytics R Programming Guide, uc-r.github.io/mars
+4. “What Impact Do Guest Reviews Have on Hotel Bookings?” SiteMinder, 21 June 2017, www.siteminder.com/r marketing/hotel-online-reviews/influence-travellers-reviews-hotel/
