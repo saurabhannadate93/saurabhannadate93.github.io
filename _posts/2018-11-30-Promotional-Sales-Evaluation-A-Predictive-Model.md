@@ -35,7 +35,7 @@ We were given a scenario where an online bookstore decided to reach out to custo
 
 Another goal of ours involved exhaustively searching the large feature space for any indicative features, knowing that we could rely on stepwise selection to reduce the number of predictors to the most significant subset. We had information on the category of books (Art, music, fiction etc.) ordered by the customers. Constructing features centered around each of these categories led us to have > 60 features in our initial model. In order to separate the grain from chaff, we utilized the random forest algorithm for selecting the most impactful variables. This analysis is detailed at the beginning of our model fitting section. After narrowing down which category variables are the most significant, we moved on to building the core of our analysis: our predictive models. Our model fitting section discusses our methods to create optimized *logistic regression* and *multiple linear regression* models, including *outlier removal*, model diagnostics such as *Cook’s distance* and *VIF* calculation, and *stepwise selection*. Finally, we discuss the accuracy of our models, both statistically and financially.
 
-## Data Cleaning and Exploratory Data Analysis
+## DATA CLEANING AND EXPLORATORY DATA ANALYSIS
 
 The data provided consisted of two datasets. The first dataset contained information at a customer level which included recency of purchase, frequency of purchase, total time on file, and recency and frequency metrics for individual book categories (Fiction, Classic, Cartoons etc.). Inforation for 30 different category types was provided. The second dataset contained order level information wherein we had data on order date, caategory of boks ordered, quantity and amount. The target was provided as the log of total amount spent (**logtargamt**) by the customer as a response to the promotional activity.
 
@@ -77,9 +77,9 @@ Much of the data relies on time to chart consumer behavior, and we intended to c
 
 When organizing customers based on order date in this manner, we decided to order time on file in a similar way. Partitioning customers based on time on file in the last 1, 3, 6, and 12 months gave us a separation between newer and older customers. During this analysis of time on file, we discovered an interesting observation about a small subset of the customers. In the training set, 87 individuals have a time on file value of zero; similarly, 271 individuals in the test set have a time on file value of zero. These customers are brand new to the online store database; therefore, they have no previous order data and so would be nearly impossible to create accurate predictions for. We were unable to remove these observations due to **52.9%** of the new customers in the training set being responders. Since the overall percentage of responders in the dataset is **3.93%**, removing the new customers would remove a significant portion of the responders. We therefore decided to manually impute predicted values for these observations. The imputation process will be detailed in the next section, as it is different for the logistic and the linear regression models.
 
-## Modeling
+## MODELING
 
-### Random Forest Variable Selection on Book Categories
+### RANDOM FOREST VARIABLE SELECTION ON BOOK CATEGORIES
 
 We ran two random forest models in order to identify potentially important book category variables with respect to classifying responders and predicting log-target amount. The input variables include frequency as well as amount variables for each category (60 variables in total). The output variable is a binary flag capturing whether a customer bought a book (logtargamt equals 0 or not) for the classification model, and logtargamt (for the subset of data that only contains responders) for the regression model. Library *caret* was used to tune both the classification and the regression random forest models.
 
@@ -93,7 +93,7 @@ We also created interaction terms between the frequency and amount for each afor
 </figcaption>
 </figure>
 
-### Classification Model: Binary Logistic Regression
+### CLASSIFICATION MODEL: BINARY LOGISTIC REGRESSION
 
 To create a logistic regression model, the response variable **logtargamt** received the necessary transformation into a binary variable. This binary variable has a value of 1 if logtargamt > 0 and a value of 0 if logtargamt = 0. Our preliminary model included all the variables we created, in addition to the **recency, frequency, amount, and time on file** variables that were included in the original dataset. These included the time-related variables we had created - **total quantity, dollar amount, binary flag if any orders have been placed in given time frame, and time on file in given time frame - for 1 month, 3 months, 6 months, and 12 months**, in addition to our **qty** variable and the numerous interaction variables we created. We also included the **Mgroup** and **Fgroup** aggregated category variables along with the most significant category variables as found through our random forest model.
 
@@ -135,7 +135,7 @@ We graphed the *Receiver Operating Characteristic curve* for our final logistic 
 </figcaption>
 </figure>
 
-### Multiple Linear Regression Model
+### MULTIPLE LINEAR REGRESSION MODEL
 
 In the logistic regression model, we did not worry about the varying purchase amount; we merely wished to predict whether a customer would respond to the promotion and purchase anything at all. However, building the multiple linear regression model necessitated further exploration of the spread of the target amount variable. We first explored the subset of our training dataset where logtargamt was greater than zero and time on file is greater than zero (customers who responded to the survey and also have previous order data). This left us with 280
 observations. We began with a number of scatterplot matrices which plotted the relationship between logtargamt and the variables provided in the training dataset (Figure 7). This gave us a sense of whether we should include higher order terms of our features in our model.
@@ -178,17 +178,17 @@ This final model has an *R-squared* of **0.385**, and an *adjusted R-squared* of
 
 One final check we performed to test our model involved exploring the spread of the test data. In order to optimize our model, we had previously removed outliers in the training set where amount upon order was larger than 1000, quantity upon order was larger than 40, and amount upon quantity was larger than 60. We observed similar outliers in the test set, with values well above these previously defined thresholds for the aforementioned predictors. Wishing to preserve the integrity of the test data set, we decided to keep these observations but to impute a predicted value for them. We made this decision through observation of the wildy large predicted values created when predicting the target amount for these customers using our multiple regression model (on the order of 10e40 or greater). Therefore, we chose as our imputed predicted value the maximum observed target amount for the training data. If we had left the massive predicted values in the model, our overall standard error would have been erroneously massive. Additionally, since we had removed the corresponding outliers in the training set, the model is unable to anticipate such extreme cases, so our imputation was absolutely necessary here, since we had endeavoured to include all observations in the test set. Furthermore, we justify our removal of the corresponding outliers in the training set by the increase in R2 of our model following their removal. In total, only 2 such observations (0.007873% of the testing data) were found with the aforementioned outlier characteristics. Although this imputation was relatively minor with relation to the size of the test data set, its effect was appropriately large due to the extremeness of the outliers.
 
-## Model Validation
+## MODEL VALIDATION
 
-### Statistical Significance
+### STATISTICAL SIGNIFICANCE
 The predicted target amount for customers with previous order data (time on file > 0) in the test set was calculated directly from our predictive models: E(log target amount) = the product of the probability of logtargamt > 0 given by the logistic regression (after adjusting for oversampling) and the predicted logtargamt value given by the linear regression. For the customers in the test set with time on file = 0, we artificially created values that, to the best of our ability, mimic the predictions given by the logistic and linear models if previous order data had been logged. As stated in the previous section, the probability of logtargamt > 0 for these customers was imputed as 0.5287 (the overall response rate in the training set). Similarly, the predicted logtargamt value that should have been found in the linear regression was imputed as the mean value of logtaramt among new users from the training dataset. E(log target amount) was calculated for these new customers in the test set by multiplying these two values together to get an artificially predicted target amount. This product, the predicted log target amount, was then exponentiated and subtracted by 1 to obtain the predicted target amount. The *RMSE* of our final model is **$10.57**, suggesting satisfactory model performance.
 
-### Financial Significance
+### FINANCIAL SIGNIFICANCE
 Using our predictive model, we identified the customers with the top 500 predicted target amounts. The sum of these predicted purchases totals $2,261.83. Their total actual purchases totaled $6,449.529, which represents the payoff of our predictive model. After noting the accuracy of our prediction compared to the payoff (35.07% of the actual payoff), we focused on the true financial criterion - the payoff percentage. We pinpointed the 500 customers who actually had the highest purchased amount during the promotional period. Their purchases totaled $27,035.11. Therefore, our payoff percentage is 6449.529/27035.11 = **23.85%**. This result indicates that even though our logistic and linear model both have high accuracy and R-square in predicting the response variable, there is still space for improvement in terms of actual performance.
 
 The payoff percentage of 23.85% gives one measure of our model’s accuracy at predicting the purchase amount of the top 500 prospects; however, we decided to further optimize the financial success of our model by finding the number of prospects which maximizes the short term profit. With the assumption that the profit margin is 25% of the purchase amount, we maximized **0.25*(sales revenue from the top x predicted prospects) - 1*x** to yield 852 as the optimum number of top prospects to target, giving a short term profit of $1,319.74. A logical next step involves calculating the payoff percentage for the top 852 customers and compare it to the percentage for the top 500 customers. This percentage was slightly higher: **25.96%** for the top 852 vs. **23.85%** for the top 500. Since the difference is not much, we can say that per the results, majority of the maximum probable profit can be achieved by targeting the top 500 customers. Future exploration of financial accuracy could illuminate better ways to optimize fiscal payoff; however, this is not in the scope of our project.
 
-## Conclusion
+## CONCLUSION
 In our final models, purchase frequency and the interaction of amount and frequency for the History category were significant in both classifying responders and predicting order amounts for responders. A multitude of predictors were significant in classifying responders or non-responders, including the original variables recency, frequency, and time on file, time-sensitive variables for purchase behavior over different time periods, and certain categorical variables, in addition to interactions among variables. For predicting order amounts for
 responders, a smaller subset of variables, including frequency, amount, amount per order, amount per book brought, and the History categorical variables proved significant. The *root mean squared error* of the predicted target amount was **$10.57**, indicating statistically strong final models. The total purchases of our top 500 predicted amounts fell a bit short of the total orders to the actual top 500 customers, at a **23.85%** payoff percentage.
 
@@ -197,10 +197,13 @@ customers, a random sample of customers, or targeted groups of customers) would 
 ultimately purchase. Further potentially beneficial metrics, such as frequency and amount of time spent on the book store’s website, as well as what they typically do while browsing the website, could have also improved our model. Finally, customer service information may have also been
 beneficial. A customer who frequently engages customer service representatives could be more likely to purchase. However, negative recent experiences could decrease the probability of future purchases.
 
-## Team members
+## TEAM MEMBERS
 - [Molly Srour](https://www.linkedin.com/in/mollysrour/)
 - [Yiwei Zhang](https://www.linkedin.com/in/yiwei-zhang-2701687a/)
 - [Saurabh Annadate](https://www.linkedin.com/in/saurabhannadate93/)
 
-## References
+## LINKS
+- Github: https://github.com/saurabhannadate93/Online-BookStore-Promotion-Response
+
+## REFERENCES
 1. Tamhane, Ajit C. Predictive Analytics: Parametric Models for Regression and Classification Using R. (Wiley Series in Probability and Statistics)
