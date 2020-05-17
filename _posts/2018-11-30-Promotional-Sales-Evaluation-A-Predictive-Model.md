@@ -20,6 +20,22 @@ header:
 figcaption {
   text-align: center;
 }
+
+p {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+ul {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+ol {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
 </style>
 
 

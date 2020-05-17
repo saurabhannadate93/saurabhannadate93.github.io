@@ -46,9 +46,9 @@ This paper was written to record our experience as the 2nd place winners and rec
 
 The 2019 Humana-Mays Healthcare Analytics Case Competition involved two levels of submissions and three rounds of evaluation. For level one submissions, we were required to develop a predictive model, score a holdout dataset and provide an analysis write-up. For level two, we had to present our findings to a panel comprising of Humana executives and Mays Business School faculty.
 
-❖	Round 1: Top 50 teams were selected amongst 480 participating teams based on the accuracy of the scored dataset <br>
-❖	Round 2: Top 5 teams were selected amongst the top 50 teams based on the analysis report <br>
-❖	Round 3: The winners were selected amongst the top 5 on the basis of their final presentations which took place in Houston, TX
+❖	**Round 1**: Top 50 teams were selected amongst 480 participating teams based on the accuracy of the scored dataset <br>
+❖	**Round 2**: Top 5 teams were selected amongst the top 50 teams based on the analysis report <br>
+❖	**Round 3**: The winners were selected amongst the top 5 on the basis of their final presentations which took place in Houston, TX
 
 
 <figure style="width: 800px" class="align-center">
