@@ -1,9 +1,15 @@
 ---
 title: "What's my house worth?"
-last_modified_at: 2020-11-20T17:00:00-00:00
+last_modified_at: 2019-06-15T17:00:00-00:00
 categories:
   - data-science
 tags:
+  - Full Stack App
+  - Reproducibility
+  - Unit Test
+  - AWS
+  - Makefile
+  - Agile
   - machine learning 
 classes:
     - wide
@@ -18,21 +24,16 @@ figcaption {
 
 </style>
 
-
-
-
-
-
-
-
-
-This paper was written to record our experience as the 2nd place winners and recipients of a $15,000 reward in the [2019 Humana-Mays Healthcare Analytics Case Competition](https://www.humanatamuanalytics.com/) amongst 480 participating teams from across the US.
+This blog post documents my first foray into developing a full analytical pipeline to administer a machine learning solution including using AWS tools such as EC2, S3, RDS for backend infrastructure and Flask for front end development. Furthermore, I got exposure to several good software engineering practices like testing, modularility, reproducibility, logging, makefile, managing dependencies, versioning and Agile management paradigm.
 
 <figure style="width: 800px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/Humana/CoverImage.jpg" alt="">
-  <figcaption class="align-center">Left to Right: <br> Heather Cox (Chief Digital Health and Analytics Officer, Humana), Saurabh Annadate, Tanya Tandon, Arvind Mahajan (Associate Dean for graduate program, Mays Business School, Texas A&M University)
-</figcaption>
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/teaser.jpg" alt="">
 </figure>
+
+
+
+
+
 
 ## COMPETITION DETAILS 
 
