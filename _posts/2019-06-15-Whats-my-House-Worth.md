@@ -24,11 +24,24 @@ figcaption {
 
 </style>
 
-This blog post documents my first foray into developing a full analytical pipeline to administer a machine learning solution including using AWS tools such as EC2, S3, RDS for backend infrastructure and Flask for front end development. Furthermore, I got exposure to several good software engineering practices like testing, modularility, reproducibility, logging, makefile, managing dependencies, versioning and Agile management paradigm.
+This blog post documents my first foray into developing a full analytical pipeline to administer a machine learning solution including using AWS tools such as EC2, S3 and RDS for backend infrastructure and Flask for front end development. Furthermore, I got exposure to several good software engineering practices like testing, modularility, reproducibility, logging, makefile, managing dependencies, versioning and Agile management paradigm.
 
 <figure style="width: 800px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/teaser.jpg" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/house_sale.PNG" alt="">
+  <figcaption class="align-center">Image for illustration purposes only
+</figcaption>
 </figure>
+
+## PROJECT CHARTER
+
+### VISION
+
+Real estate agencies require accurate estimation of the price of a property to decide whether it is undervalued or not before making an investment decision. Individual home buyers also need an objective estimate of a home before buying. House pricing decisions are often subjective and can lead to bad investment decisions. The vision is to develop a platform which would help estimate the price of a property based on certain property characteristics to help drive investment decisions, increase profits and reduce costs.
+
+### MISSION
+
+Mission is to build an app which would help accurately predict the price of a property based on certain characteristics like property type, no. of floors, age etc. which can be deployed as a website as well as an Android/iOS app.
+
 
 
 
