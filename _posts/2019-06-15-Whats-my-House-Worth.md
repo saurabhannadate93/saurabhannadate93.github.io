@@ -117,11 +117,9 @@ Further, I was interested in understanding whether the time of build of a house 
 
 Another hypothesis was that the neighbourhood characterstics could potentially impact the sale price. The below boxplots illustrate the relationships between the variables MSZoning and Neigbourhood. From both the plots, we can clearly see that certain neighbourhoods or type of neighbourhoods have higher sale prices as compared to others.
 
-
 <figure style="width: 800px" class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig4_1.PNG" alt="">
 </figure>
-
 
 <figure style="width: 800px" class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig4_2.PNG" alt="">
@@ -146,7 +144,11 @@ Most of the above combinations make sense. E.g. GarageCars and GarageArea are hi
 
 ## MODELING
 
-For modeling, the sklearn implementation of the Random Forest Regressor was used. The target was to predict the **SalePrice** using the other variables. The following variables were dropped from the training data: **YearRemodAdd**, **MiscVal**, **MoSold**, **YrSold**, **SaleType** and **SaleCondition**. The categorical variables were converted to one-hot encoded dummy variables. For the first iteration, all the variables were considered for modeling. Grid search hyperparameter optimization was used to identify the best combination of hyperparameters (**max_depth** and **max_features**) optimizing for the OOB (out-of-bag) R-square score. The number of trees were fixed at 1000. The best performing model had max_depth as 22 and max_features as 210 and an OOB R-square of 85.95%. The feature importance plot was evaluated to identify the most impactful variables. It was observed that except a few, most of the variables had very low to no contribution to the model. The model was refit using only the features having feature importances > 0.005. The feature **OverallQual** although being the most impactful was dropped from the model as quality scores were subjective and not an intrinsic characteristic of a house.
+### DATA CLEANING & FEATURE GENERATION
+The target was to predict the **SalePrice** using the other variables. The following variables were dropped from the training data: **YearRemodAdd**, **MiscVal**, **MoSold**, **YrSold**, **SaleType** and **SaleCondition**. The categorical variables were converted to one-hot encoded dummy variables. A new binary variable called **RemodelledFlag** was constructed depending on whether the house had undergone remodeling or not. 
+
+### MODEL BUILDING
+For modeling, the sklearn implementation of the *Random Forest Regressor* was used. For the first iteration, all the variables were considered for modeling. *Grid search hyperparameter optimization* was used to identify the best combination of hyperparameters (**max_depth** and **max_features**) optimizing for the OOB (out-of-bag) R-square score. The number of trees were fixed at 1000. The best performing model had max_depth as 22 and max_features as 210 and an OOB R-square of 85.95%. The feature importance plot was evaluated to identify the most impactful variables. It was observed that except a few, most of the variables had very low to no contribution to the model. The model was refit using only the features having feature importances > 0.005. The feature **OverallQual** although being the most impactful was dropped from the model as quality scores were subjective and not an intrinsic characteristic of a house.
 
 The model was retrained using the reduced list of features. The final model contained the following 10 variables:
 - GrLivArea
@@ -160,7 +162,7 @@ The model was retrained using the reduced list of features. The final model cont
 - TotRmsAbvGrd
 - Fireplaces
 
-Since the number of variables were reduced, hyperparameter optimization was again performed to derive the best performing hyperparameters. The best performing model had max_depth = 16 and depth = 6 with n_estimators fixed at 1000. It had a OOB R-square score of 82%. Since this satisfied our modeling success criteron, I finalized as my final model object. The model object was saved as a pickle file to be integrated into the full pipeline. Figure 6 highlights the feature importances for the final model.
+Since the number of variables were reduced, hyperparameter optimization was again performed to derive the best performing hyperparameters. The best performing model had max_depth = 16 and depth = 6 with n_estimators fixed at 1000. It had a OOB R-square score of 82%. Since this satisfied our modeling success criteron, this was finalized as the final model object. The model object was saved as a pickle file to be integrated into the full pipeline. Figure 6 highlights the feature importances for the final model.
 
 <figure style="width: 800px" class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig6.png" alt="">
@@ -170,16 +172,53 @@ Since the number of variables were reduced, hyperparameter optimization was agai
 
 ## MODELING PIPELINE
 
-The following diagram shows the full modeling pipeline:
+The app has been configured to run in two different modes: **Local** and **AWS** depending on your infrastructure requirements. Please refer to the project README for full set of instructions of how to setup the app.
 
-<figure style="width: 800px" class="align-center">
+The following figure depicts the full modeling pipeline:
+
+<figure style="width: 600px" class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig7.PNG" alt="">
   <figcaption class="align-center">Figure 7: Modeling Pipeline
 </figcaption>
 </figure>
 
+The raw data for this project has been downloaded and uploaded to an open S3 bucket. Depending on the mode, your compute engine can be your local server for mode = 'Local' or an EC2 instance for mode = 'AWS'. The compute engine will fetch the data from the S3 bucket, clean the data, generate features, train and evaluate model and launch the flask app. The model parameters are defined in `config/config.yml`. The app usage information will be logged in a sqlite database (mode = 'Local') or a RDS database (mode = 'AWS'). The usage information can be analyzed for tracking and analyzing app adoption.
+
+An user interface was developed using HTML and CSS to provide a user friendly interface to interact with the model API. The following figure depicts the UI:
+
+<figure style="width: 800px" class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig8_1.PNG" alt="">
+</figure>
+
+<figure style="width: 800px" class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig8_2.PNG" alt="">
+  <figcaption class="align-center">Figure 8: Flask app UI home page (above) and form page (below)
+</figcaption>
+</figure>
+
+## APP DEVELOPMENT ASPECTS AND LEARNINGS
+
+### MODULARITY
+
+### TESTING
+
+### LOGGING
+The default `logging` module was used for logging purposes. 
 
 
+
+### MAKEFILE
+
+
+
+
+
+
+
+
+## LINKS
+
+1. [Project Repo](https://github.com/saurabhannadate93/Whats-my-House-worth)
 
 ## REFERENCES
-1. https://www.kaggle.com/pmarcelino/comprehensive-data-exploration-with-python
+1. [Exploratory Data Analysis](https://www.kaggle.com/pmarcelino/comprehensive-data-exploration-with-python)
