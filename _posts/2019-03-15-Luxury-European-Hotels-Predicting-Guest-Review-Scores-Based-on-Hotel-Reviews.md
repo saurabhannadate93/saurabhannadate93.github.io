@@ -336,6 +336,9 @@ We would have liked to have had a more powerful predictive model when using only
 - [Tanya Tandon](https://www.linkedin.com/in/tanya-tandon/)
 - [Saurabh Annadate](https://www.linkedin.com/in/saurabhannadate93/)
 
+## LINKS:
+- [Github](https://github.com/saurabhannadate93/MSiA420ProjectTeamCL)
+
 ## REFERENCES
 1. Dark Sky, darksky.net/dev
 2. Liu, Jason. “515K Hotel Reviews Data in Europe.” Kaggle, 21 Aug. 2017, www.kaggle.com/jiashenliu 515k-hotel-reviews-data-in-europe
