@@ -76,13 +76,13 @@ The mission of this project is to build an app which would help accurately predi
 
 ### DATA DETAILS
 
-The popular Ames housing dataset was used for this analysis (source: [Kaggle](https://www.kaggle.com/c/house-prices-advanced-regression-techniques/overview)). The dataset contains details of 1,460 properties from Ames, IA region and their sale prices. House attributes included 79 variables including zoning characteristics, neighbourhood details, quality scores, utilities, build year, whether remodeled etc. Looking at data completeness, I observed that there were a few variables that have a very high percentage of missing values. A quick look at the data dictionary revealed that this data was structurally missing, and hence was imputed appropriately. Eg. 93.7% of the records had missing values for the field "Alley". This implied that 93.7% of all the houses did not have alley access. Similarly, 5.54% of houses in our dataset did not have a garage. All these values were imputed by either 0 or "None" wherever appropriate.
+The popular Ames housing dataset was used for this analysis (source: [Kaggle](https://www.kaggle.com/c/house-prices-advanced-regression-techniques/overview)). The dataset contains details of 1,460 properties from Ames, IA region and their sale prices. House attributes included 79 variables including zoning characteristics, neighbourhood details, quality scores, utilities, build year, whether remodeled etc. Looking at data completeness, I observed that there were a few variables that have a very high percentage of missing values. A quick look at the data dictionary revealed that this data was structurally missing, and hence was imputed appropriately. Eg. 93.7% of the records had missing values for the field **Alley**. This implied that 93.7% of all the houses did not have alley access. Similarly, 5.54% of houses in our dataset did not have a garage. All these values were imputed by either **0** or **None** wherever appropriate.
 
 ### EXPORATORY DATA ANALYSIS
 
 The house prices in the dataset ranged from $35,000 to $750,000. A quick look at the target distribution (Figure 1) reveals that majority of houses had prices between $80,000 and $400,000. The target distribution was fairly normally distributed with a slight right skew.
 
-<figure style="width: 800px" class="align-center">
+<figure style="width: 600px" class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig1.png" alt="">
   <figcaption class="align-center">Figure 1: Distribution of target
 </figcaption>
@@ -90,12 +90,12 @@ The house prices in the dataset ranged from $35,000 to $750,000. A quick look at
 
 Next I looked at scatterplots to understand the relationships between the target and a few numerical variables present in the dataset. Figure 2 shows the scatterplots of the target with GrLivArea (Total above ground square footage) and TotalBsmtSF (Total Basement square footage). Both the plots show that the SalePrice is positively related to both the variables.
 
-<figure style="width: 800px" class="align-center">
+<figure style="width: 600px" class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig2_1.png" alt="">
 </figure>
 
 
-<figure style="width: 800px" class="align-center">
+<figure style="width: 600px" class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig2_2.png" alt="">
   <figcaption class="align-center">Figure 2: Scatterplots showing relationships between the house sale price and total above ground square footage (above) and total basement square footage (below)
 </figcaption>
@@ -110,7 +110,7 @@ Further, I was interested in understanding whether the time of build of a house 
 
 
 <figure style="width: 800px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig3_2.png" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig3_2.PNG" alt="">
   <figcaption class="align-center">Figure 3: Boxplots showing relationships between the house sale price and year of build (above) and zoning sub class (below)
 </figcaption>
 </figure>
@@ -119,12 +119,12 @@ Another hypothesis was that the neighbourhood characterstics could potentially i
 
 
 <figure style="width: 800px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig4_1.png" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig4_1.PNG" alt="">
 </figure>
 
 
 <figure style="width: 800px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig4_2.png" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig4_2.PNG" alt="">
   <figcaption class="align-center">Figure 4: Boxplots showing relationships between the house sale price and MS Zoning (above) and neighbourhood (below)
 </figcaption>
 </figure>
@@ -146,7 +146,7 @@ Most of the above combinations make sense. E.g. GarageCars and GarageArea are hi
 
 ## MODELING
 
-For modeling, the sklearn implementation of the Random Forest Regressor was used. The target was to predict the "SalePrice" using the other variables. The following variables were dropped from the training data: "YearRemodAdd", "MiscVal", "MoSold", "YrSold", "SaleType" and "SaleCondition". The categorical variables were converted to one-hot encoded dummy variables. For the first iteration, all the variables were considered for modeling. Grid search hyperparameter optimization was used to identify the best combination of hyperparameters ("max_depth" and "max_features") optimizing for the OOB (out-of-bag) R-square score. The number of trees were fixed at 1000. The best performing model had max_depth as 22 and max_features as 210 and an OOB R-square of 85.95%. The feature importance plot was evaluated to identify the most impactful variables. It was observed that except a few, most of the variables had very low to no contribution to the model. The model was refit using only the features having feature importances > 0.005. The feature "OverallQual" although being the most impactful was dropped from the model as quality scores were subjective and not an intrinsic characteristic of a house.
+For modeling, the sklearn implementation of the Random Forest Regressor was used. The target was to predict the **SalePrice** using the other variables. The following variables were dropped from the training data: **YearRemodAdd**, **MiscVal**, **MoSold**, **YrSold**, **SaleType** and **SaleCondition**. The categorical variables were converted to one-hot encoded dummy variables. For the first iteration, all the variables were considered for modeling. Grid search hyperparameter optimization was used to identify the best combination of hyperparameters (**max_depth** and **max_features**) optimizing for the OOB (out-of-bag) R-square score. The number of trees were fixed at 1000. The best performing model had max_depth as 22 and max_features as 210 and an OOB R-square of 85.95%. The feature importance plot was evaluated to identify the most impactful variables. It was observed that except a few, most of the variables had very low to no contribution to the model. The model was refit using only the features having feature importances > 0.005. The feature **OverallQual** although being the most impactful was dropped from the model as quality scores were subjective and not an intrinsic characteristic of a house.
 
 The model was retrained using the reduced list of features. The final model contained the following 10 variables:
 - GrLivArea
@@ -172,6 +172,11 @@ Since the number of variables were reduced, hyperparameter optimization was agai
 
 The following diagram shows the full modeling pipeline:
 
+<figure style="width: 800px" class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig7.PNG" alt="">
+  <figcaption class="align-center">Figure 7: Modeling Pipeline
+</figcaption>
+</figure>
 
 
 
