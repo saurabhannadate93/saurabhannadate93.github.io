@@ -21,8 +21,8 @@ feature_row1:
 
 feature_row2:
   - image_path: assets/images/house_worth/teaser.jpg
-    alt: "What's my house worth?"
-    title: "What's my house worth?"
+    alt: "What's my house worth? - A full stack app"
+    title: "What's my house worth? - A full stack app"
     excerpt: 'This blog post documents my first foray into developing a full stack analytical pipeline to administer a machine learning solution including using AWS tools such as EC2, S3 and RDS for backend infrastructure and Flask for front end UI.'
     url: "http://saurabhannadate.com/data-science/Whats-my-House-Worth/"
     btn_label: "Continue Reading"
