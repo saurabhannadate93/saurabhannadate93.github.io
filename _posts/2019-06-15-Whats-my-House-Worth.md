@@ -302,7 +302,7 @@ Sincerest thanks to the following for helping me throughout the project:
 4. [Xiaofeng Zhu](https://www.linkedin.com/in/xiaofengzhu/) (Course TA)
 
 ## LINKS
-1. [Project Repo](https://github.com/saurabhannadate93/Whats-my-House-worth)
+1. [Github](https://github.com/saurabhannadate93/Whats-my-House-worth)
 
 ## REFERENCES
 1. [Exploratory Data Analysis](https://www.kaggle.com/pmarcelino/comprehensive-data-exploration-with-python)
