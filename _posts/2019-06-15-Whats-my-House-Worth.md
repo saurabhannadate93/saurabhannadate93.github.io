@@ -294,7 +294,7 @@ The default python `logging` package was used for logging purposes. All logging 
 ### REPRODUCEABILITY
 Machine Learning solutions need to be reproduceable. This means that anyone having access to the code should be able to replicate the model performance metrics that have been reported for the model. This is important to validate the performance and gain trust and buy-in from the model consumers. In order to ensure that anyone can replicate the modeling pipeline, a `Makefile` was built to execute the entire pipeline. A Makefile is a file containing a set of directives used by a make build automation tool to generate a target/goal.
 
-### ACKNOWLEDGEMENTS
+## ACKNOWLEDGEMENTS
 Sincerest thanks to the following for helping me throughout the project:
 1. [Tanya Tandon](https://www.linkedin.com/in/tanya-tandon/) (QA)
 2. [Chloe Mawer](https://www.linkedin.com/in/chloemawer/) (Course Instructor)
