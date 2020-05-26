@@ -164,7 +164,7 @@ The model was retrained using the reduced list of features. The final model cont
 
 Since the number of variables were reduced, hyperparameter optimization was again performed to derive the best performing hyperparameters. The best performing model had max_depth = 16 and depth = 6 with n_estimators fixed at 1000. It had a OOB R-square score of 82%. Since this satisfied our modeling success criteron, this was finalized as the final model object. The model object was saved as a pickle file to be integrated into the full pipeline. Figure 6 highlights the feature importances for the final model.
 
-<figure style="width: 800px" class="align-center">
+<figure style="width: 500px" class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig6.png" alt="">
   <figcaption class="align-center">Figure 6: Feature Importances for the final Random Forest model
 </figcaption>
@@ -199,25 +199,18 @@ An user interface was developed using HTML and CSS to provide a user friendly in
 ## APP DEVELOPMENT ASPECTS AND LEARNINGS
 
 ### MODULARITY
+Modularity refers to the extent to which a software/Web application may be divided into smaller modules. Every element of the modeling pipeline was controlled by its own submodules within the app. This allowed me to develop and test individual components independently which made debugging and scope of further development easier.
 
 ### TESTING
+Unit Tests were built in to test individual functions. All tests reside in the `tests/` folder. Unit tests help us understand whether the functions are behaving as desired and help prevent untowardly bugs. It is important to have testing built in specifically in production systems to ensure that the system is behaving as desired.
 
 ### LOGGING
-The default `logging` module was used for logging purposes. 
+The default python `logging` package was used for logging purposes. All logging configurations are controlled via the`config/logging_local.conf` file. The different logging modes (`info`, `debug`, `error`) have been extensively used during development and deployment to debug and keep track of progress. Having descriptive logging messages throughout the code helped me understand what my code was doing and identify bugs, changes in functionality, input data quality, and more.
 
-
-
-### MAKEFILE
-
-
-
-
-
-
-
+### REPRODUCEABILITY
+Machine Learning solutions need to be reproduceable. This means that anyone having access to the code should be able to replicate the model performance metrics that have been reported for the model. This is important to validate the performance and gain trust and buy-in from the model consumers. In order to ensure that anyone can replicate the modeling pipeline, a Makefile was built to execute the entire pipeline. A Makefile is a file containing a set of directives used by a make build automation tool to generate a target/goal.
 
 ## LINKS
-
 1. [Project Repo](https://github.com/saurabhannadate93/Whats-my-House-worth)
 
 ## REFERENCES
