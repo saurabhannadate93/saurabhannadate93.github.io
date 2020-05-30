@@ -18,7 +18,6 @@ feature_row1:
     btn_label: "Continue Reading"
     btn_class: "btn--primary"
 
-
 feature_row2:
   - image_path: assets/images/house_worth/teaser.jpg
     alt: "What's my house worth? - A full stack app"
@@ -28,8 +27,17 @@ feature_row2:
     btn_label: "Continue Reading"
     btn_class: "btn--primary"
 
-
 feature_row3:
+  - image_path: assets/images/house_worth/teaser.jpg
+    alt: "What's my house worth? - A full stack app"
+    title: "What's my house worth? - A full stack app"
+    excerpt: 'This blog post documents my first foray into developing a full stack analytical pipeline to administer a machine learning solution including using AWS tools such as EC2, S3 and RDS for backend infrastructure and Flask for front end UI.'
+    url: "http://saurabhannadate.com/data-science/Whats-my-House-Worth/"
+    btn_label: "Continue Reading"
+    btn_class: "btn--primary"
+
+
+feature_row4:
   - image_path: assets/images/hotel_review/hotelimage.jpg
     alt: "Luxury European Hotels: Predicting Guest Review Scores Based on Hotel Reviews"
     title: "Luxury European Hotels: Predicting Guest Review Scores Based on Hotel Reviews"
@@ -38,7 +46,7 @@ feature_row3:
     btn_label: "Continue Reading"
     btn_class: "btn--primary"
 
-feature_row4:
+feature_row5:
   - image_path: /assets/images/bookstore/bookstore.jpg
     alt: "Helping an Online bookstore quantify the impact of their promotion strategy"
     title: "Helping an Online bookstore quantify the impact of their promotion strategy"
