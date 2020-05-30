@@ -24,288 +24,92 @@ figcaption {
 
 </style>
 
-This blog post documents my first foray into developing a deep learning solution including frameworkslike Convolutional Neural Networks and Recurrent Neural Networks to convert handwritten notes to digital text. 
-
-
-developing a full stack analytical pipeline to administer a machine learning solution including using AWS tools such as *EC2, S3* and *RDS* for backend infrastructure and *Flask* for front end UI. Furthermore, through this project, I got exposure to several good software engineering practices like *testing, modularility, reproducibility, logging, managing dependencies, versioning* and *agile software development paradigm*.
+This blog documents my first deep learning project in which we developed a neural network model using Convolutional Neural Networks (CNNs) and Recurrent Neural Networks (RNNs) for Optical Character Recognition to convert handwritten text images into digital text.
 
 <figure style="width: 800px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/house_sale.PNG" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/ProScanner/header.png" alt="">
   <figcaption class="align-center">(Image for illustration purposes only)
 </figcaption>
 </figure>
 
-## PROJECT CHARTER
+## INTRODUCTION
+The goal of this project is to build a Handwritten Text Recognition (HTR) model to recognize the text in handwritten text-line images and transate them into the corresponding digital format. This problem is relevant as it finds potential applications in several industries like Legal (digitation of case documents), Banking (Automatic reading of cheques, deposit slips etc.), HealthCare (reading prescriptions, handwritten medical records, insurance forms, general health forms etc.), education, government agencies etc. [1] Digitation of paper documents make them easily searchable, editable, accessible and efficient to store. 
 
-### VISION
+The dataset that was used for building the model was the IAM Handwriting database. The dataset is described in more detail in the Dataset section. An existing implementation of the HTR model used to recognize individual words from this dataset was taken as a starting point. We took this architecture as a baseline and increased this threshold to 200 characters, therefore greatly increase utility in recognizing full sentences.
 
-Real estate agencies require accurate estimation of the price of a property to decide whether it is undervalued or not before making an investment decision. Individual home buyers also need an objective estimate of a home before buying. House pricing decisions are often subjective and can lead to bad investment decisions. The vision is to develop a platform which would help estimate the price of a property based on certain property characteristics to help drive investment decisions, increase profits and reduce costs.
+A google survey was administered to calculate the human correct recognition accuracy rate. A total of 10 random words and 10 lines were used from the model training data to gauge this. For a total of 42 responses, the overall character error  rate was 11.7% (i.e. taking into account all the characters in the 10 words and 10 lines correctly recognized by the 42 responders). For our final model, we got a character error rate of 10.5% for the validation set which is similar to the human character error rate determined.
 
-### MISSION
+Although our model was performing satisfactorily, there still are several potential improvements that can be experimented with in order to make the model more accurate and robust. These potential improvements are discussed in the Potential Next Steps Section.
 
-The mission of this project is to build an app which would help accurately predict the price of a property based on certain characteristics like property type, no. of floors, age etc. which can be deployed as a website as well as an Android/iOS app.
+## DATASET
+The IAM Handwriting Database [2] [3] was used for training the model. This dataset was first published at the ICDAR in 1999. The database contains forms of unconstrained handwritten text, which were scanned at a resolution of 300dpi and saved as PNG images with 256 gray levels. 657 writers contributed handwriting samples to this database. The dataset contains 1,539 pages of scanned text, 5,685 isolated and labeled sentences, 13,353 isolated and labeled text lines and 115,320 isolated and labeled word. Our primary analysis. Our primary focus of interest was the ~13k labeled text lines which were used for training the model. The dataset contained around 80 distinct characters (lowercase, uppercase, digits, symbols).
 
-### SUCCESS CRITERION
+The following figure depicts examples of images present in the training data:
 
-**Modeling ACCURACY**: The model is successful if the modeling accuracy (R-square evaluation metric) exceeds 60%
-
-**BUSINESS OUTCOME**: A Key Performance Indicator of the success of the app would be continual increase in it's adoption to drive business decisions by the various Real Estate agencies and individual customers. This would be a good indicator of the model's accuracy performance as well. The intention is to deploy the app at a particular location, and based on the performance expand to other areas.
-
-## PROJECT PLAN
-
-Since we had to simulate working in a agile software development paradigm, the following project plan was constructed and the work was divided across two sprints of two weeks each. 
-
-**THEME: Develop and deploy a platform that helps estimate the valuation of a property based on certain characteristics**
-
-1. EPIC 1: Model Building and Optimization
-  - Story 1 : Data Visualization
-  - Story 2 : Data Cleaning and missing value imputation
-  - Story 3 : Feature Generation
-  - Story 4 : Testing different model architectures and parameter tuning
-  - Story 5 : Model performance tests to check the model run times
-
-2. EPIC 2: Model Deployment Pipeline Development
-  - Story 1 : Environment Setup : requirement.txt files
-  - Story 2 : Set up S3 instance
-  - Story 3 : Initialize RDS database
-  - Story 4 : Deploy model using Flask
-  - Story 5 : Development of unit tests and integrated tests
-  - Story 6 : Setup usage logs
-  - Story 7 : Solution reproducibility tests
-
-3. EPIC 3: User Interface Development
-  - Story 1 : Develop a basic form to input data and output results
-  - Story 2 : Add styling/colors to make the interface more visually appealing
-
-**Sprint Sizing Legend:**
-- 0 points - quick chore
-- 1 point ~ 1 hour (small)
-- 2 points ~ 1/2 day (medium)
-- 4 points ~ 1 day (large)
-- 8 points - big and needs to be broken down more when it comes to execution (okay as placeholder for future work though)
-
-**Sprint Plan:**
-
-Sprint 1:
-- EPIC 2 : Story 2 : Set up a S3 instance (1)
-- EPIC 2 : Story 3 : Initialize RDS database(1)
-- EPIC 1 : Story 1 : Exploratory Data Analysis (2)
-- EPIC 1 : Story 2 : Data Cleaning and missing value imputation (2)
-- EPIC 2 : Story 1 : Environment Setup : requirement.txt files (1)
-
-Sprint 2:
-- EPIC 1 : Story 3 : Feature Generation (2)
-- EPIC 1 : Story 4 : Testing different model architectures and parameter tuning (8)
-- EPIC 1 : Story 5 : Model performance tests (2)
-- EPIC 2 : Story 4 : Deploy model using Flask (2)
-- EPIC 2 : Story 5 : Development of unit tests and integrated tests (4)
-- EPIC 3 : Story 1 : Develop a basic form to input data and output results (2)
-- EPIC 2 : Story 6 : Setup usage logs (2)
-- EPIC 2 : Story 7 : Solution reproducibility tests (4)
-
-IceBox:
-- EPIC 3 : Story 2 : Add styling/colors to make the interface more visually appealing
-
-## REPO STRUCTURE
-The Cookiecutter project structure template was considered for the repo structure. The reason why this was used is that it provided a logical, reasonably standardized and flexible project structure to work with. The repo structure is illustrated below:
-
-```
-├── README.md                         <- You are here
-│
-├── app
-│   ├── static/                       <- CSS, JS files that remain static 
-│   ├── templates/                    <- HTML (or other code) that is templated and changes based on a set of inputs
-│   ├── app.py                        <- Contains all the functionality of the flask app 
-│
-├── config                            <- Directory for yaml configuration files for model training, scoring, etc
-│   ├── logging_local.conf            <- Configuration files for python loggers
-│   ├── config.py                     <- Contains all configurations required for processing and set up
-│   ├── flask_config.py               <- Contains all config required for the flask app
-│
-├── data                              <- Folder that contains data used or generated. Not tracked by git
-│   ├── raw/                          <- Place to put raw data used for training the model 
-│   ├── clean/                        <- Contains the cleaned dataset after the raw data has been cleaned
-│   ├── features/                     <- Contains the data with the features
-│
-├── database                          <- Folder that contains the local SQLite database
-│
-├── deliverables                      <- Contains all deliverables for the project
-│
-├── logs                              <- Contains execution logs
-│
-├── models                            <- Trained model objects (TMOs), model predictions, and/or model summaries
-│
-├── notebooks
-│   ├── develop                       <- Current notebooks being used in development
-│   ├── deliver                       <- Notebooks shared with others 
-│   ├── archive                       <- Developed notebooks no longer being used 
-│
-├── src                               <- Contains all the scripts for the project
-│   ├── archive/                      <- No longer current scripts.
-│   ├── helpers/                      <- Helper scripts used in main src files 
-│   ├── load_data.py                  <- Script for downloading data from the input source 
-│   ├── clean_data.py                 <- Script for cleaning the raw data
-│   ├── features.py                   <- Script containing features that are required to be generated for modelling
-│   ├── generate_features.py          <- Script that uses the features script to generate features
-│   ├── log_usage_data.py             <- Script for building the usage log database and injesting data in it
-│   ├── train_model.py                <- Script that trains the model using the final training data
-│
-├── tests                             <- Contains files for unit testing
-│
-├── run.py                            <- Simplifies the execution of one or more of the src scripts 
-│
-├── requirements.txt                  <- Python package dependencies 
-│
-├── Makefile                          <- Makefile to execute the make commands
-```
-
-## DATA DETAILS AND EXPLORATORY DATA ANALYSIS
-
-### DATA DETAILS
-
-The popular Ames housing dataset was used for this analysis (source: [Kaggle](https://www.kaggle.com/c/house-prices-advanced-regression-techniques/overview)). The dataset contains details of 1,460 properties from Ames, IA region and their sale prices. House attributes included 79 variables including zoning characteristics, neighbourhood details, quality scores, utilities, build year, whether remodeled etc. Looking at data completeness, I observed that there were a few variables that have a very high percentage of missing values. A quick look at the data dictionary revealed that this data was structurally missing, and hence was imputed appropriately. Eg. 93.7% of the records had missing values for the field **Alley**. This implied that 93.7% of all the houses did not have alley access. Similarly, 5.54% of houses in our dataset did not have a garage. All these values were imputed by either **0** or **None** wherever appropriate.
-
-### EXPORATORY DATA ANALYSIS
-
-The house prices in the dataset ranged from $35,000 to $750,000. A quick look at the target distribution (Figure 1) reveals that majority of houses had prices between $80,000 and $400,000. The target distribution was fairly normally distributed with a slight right skew.
-
-<figure style="width: 600px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig1.png" alt="">
-  <figcaption class="align-center">Figure 1: Distribution of target
+<figure style="width: 800px" class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig1.PNG" alt="">
+  <figcaption class="align-center">Figure 1: Training Examples
 </figcaption>
 </figure>
 
-Next I looked at scatterplots to understand the relationships between the target and a few numerical variables present in the dataset. Figure 2 shows the scatterplots of the target with **GrLivArea** (Total above ground square footage) and **TotalBsmtSF** (Total Basement square footage). Both the plots show that the target is positively related to both the variables.
+## MODEL TRAINING AND VALIDATION
 
-<figure style="width: 600px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig2_1.png" alt="">
-</figure>
+### MODEL TRAINING CONSTRUCT
+The dataset of ~13k observations was divided into 95% training Set (~12.4 observations) and 5% validation set (~600 observations). All 12.4k observations were trained in all epochs and each epoch was divided into 50 batches per epoch. The loss function which was minimized was the tensoflow ctc loss `tf.nn.ctc_loss`. This loss function was used to update the parameters, however we wanted to have a more consumable and intuitive loss function to understand the model performance. In order to do so, we used the *character error rate* (Avg. % of characters wrongly predicted) and the *word error rate* to measure model performance. Early stopping was used to prevent overfitting the model. If the model character error rate did not improve for five consecutive epochs, the model training was stopped and the latest model snapshot was taken as the final model object for that iteration.
+
+## MODEL ARCHITECTURE
+
+Our model architecture involves a model consisting of  7 CNN layers, 2 RNN (LSTM) layers and the CTC loss and a decoding layer.
+
+### CONVOLUTIONAL NEURAL NETWORK (CNN) 
+CNN layers extract relevant features from the input image fed during training. The model architecture contains five convolution blocks. The first two blocks consist of two convolution layers with a filter kernel of size 5X5 and RELU activation followed by a pooling layer. The next three blocks consist of one convolution layer with a filter kernel of size 3X3 and RELU activation followed by a pooling layer. While the image height is downsized by 2 in each block, feature maps (channels) are added, so that the output feature map (or sequence) has a size of 200×256.
 
 
-<figure style="width: 600px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig2_2.png" alt="">
-  <figcaption class="align-center">Figure 2: Scatterplots showing relationships between the house sale price and total above ground square footage (above) and total basement square footage (below)
-</figcaption>
-</figure>
+### RECURRENT NEURAL NETORK (RNN)
+Bi-directional Long Short-Term Memory (LSTM) implementation of RNNs is used, as it is able to propagate information through longer distances and provides more robust training characteristics than vanilla RNN. The feature sequence contains 256 features per time-step, the LSTM propagates relevant information through this sequence. The RNN output sequence is mapped to a matrix of size 200×81. The IAM dataset consists of 80 different characters, further one additional character is needed for the CTC operation (CTC blank label), therefore there are 81 entries for each of the 200 time-steps. 
 
-Further, I was interested in understanding whether the time of build of a house impated its sale price. The below boxplots illustrate the relationships between the variables **YearBuilt** and **MSSubClass**. Looking at the plots, we can see that the year of build did not necessarily have any impact on the price of the house. Hwowever, the variable MSSubClass revealed a different story. It can be seen that houses built after 1946 had on average higher prices that older built houses.
+### CONNECTIONIST TEMPORAL CLASSIFICATION (CTC)
+While training the Neural Network, the CTC is given the RNN layer output matrix and the ground truth text and it computes the loss value. While inferring, the CTC is only given the matrix and it decodes it into the final text employing Word Beam Search. Both the ground truth text and the recognized text can be at most 200 characters long.
 
 
 <figure style="width: 800px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig3_1.png" alt="">
-</figure>
-
-
-<figure style="width: 800px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig3_2.PNG" alt="">
-  <figcaption class="align-center">Figure 3: Boxplots showing relationships between the house sale price and year of build (above) and zoning sub class (below)
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig2.PNG" alt="">
+  <figcaption class="align-center">Figure 2: Model Architecture
 </figcaption>
 </figure>
 
-Another hypothesis was that the neighbourhood characterstics could potentially impact the sale price. The below boxplots illustrate the relationships between the variables **MSZoning** and **Neigbourhood**. From both the plots, we can clearly see that certain neighbourhoods or type of neighbourhood have higher sale prices as compared to others.
+#### MODEL EXPERIMENTS
+
+
+
+
+
+
+
+## RESULTS
+Our final model performed significantly better to give us a character error rate of 10.5% on the test set.
 
 <figure style="width: 800px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig4_1.PNG" alt="">
-</figure>
-
-<figure style="width: 800px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig4_2.PNG" alt="">
-  <figcaption class="align-center">Figure 4: Boxplots showing relationships between the house sale price and MS Zoning (above) and neighbourhood (below)
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig3.PNG" alt="">
+  <figcaption class="align-center">Figure 3: Final Character Error Rate
 </figcaption>
 </figure>
 
-Looking at the correlations of our response variable SalePrice with all the variables (Figure 5), we can see that the highest correlations are with **OverallQual, GrLivArea** (Above ground living area), **TotalBsmtSF** (Total Basement Area), **1stFlrSF** (First floor area), **FullBath** (Full bathrooms above grade), **GarageCars** and **GarageArea**. Furthermore, the following set of response variables have high correlations between them:
 
-- TotalBSMTSF and 1stFlrSR
-- GarageCars and GarageArea
-- GarageYrBuilt and YearBuilt
-- TotRmsAbvGrd and GrLivArea
+## POTENTIAL NEXT STEPS
 
-Most of the above combinations make sense. E.g. GarageCars and GarageArea are highly correlated. This is intuitive as the number of cars that a garage can accomodate will be a function of the total area available. Including both variables amongst the above sets in our model may lead to multi-dimensionality problems while modeling; however since we use a tree based model for modeling, we do not run into this problem.
-
-<figure style="width: 800px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig5.png" alt="">
-  <figcaption class="align-center">Figure 5: Correlation Heatmap of the variables
-</figcaption>
-</figure>
-
-## MODELING
-
-### DATA CLEANING & FEATURE GENERATION
-The target was to predict the **SalePrice** using the other variables. The following variables were dropped from the training data: **YearRemodAdd**, **MiscVal**, **MoSold**, **YrSold**, **SaleType** and **SaleCondition**. The categorical variables were converted to one-hot encoded dummy variables. A new binary variable called **RemodelledFlag** was constructed depending on whether the house had undergone remodeling or not. 
-
-### MODEL BUILDING
-For modeling, the sklearn implementation of the *Random Forest Regressor* was used. For the first iteration, all the variables were considered for modeling. *Grid search hyperparameter optimization* was used to identify the best combination of hyperparameters (*max_depth* and *max_features*) optimizing for the *OOB (out-of-bag) R-square* score. The number of trees were fixed at 1000. The best performing model had max_depth as 22 and max_features as 210 and an OOB R-square of 85.95%. The feature importance plot was evaluated to identify the most impactful variables. It was observed that except a few, most of the variables had very low to no contribution to the model. The model was refit using only the features having feature importances > 0.005. The feature **OverallQual** although being the most impactful was dropped from the model as quality scores were subjective and not an intrinsic characteristic of a house.
-
-The model was retrained using the reduced list of features. The final model contained the following 10 variables:
-- GrLivArea
-- GarageCars
-- TotalBsmtSF
-- YearBuilt
-- 1stFlrSF
-- GarageArea
-- FullBath
-- LotArea
-- TotRmsAbvGrd
-- Fireplaces
-
-Since the number of variables were reduced, hyperparameter optimization was again performed to derive the best performing hyperparameters. The best performing model had max_depth = 16 and max_features = 6 with n_estimators fixed at 1000. It had a OOB R-square score of 82%. Since this satisfied our modeling success criteron, this was finalized as the final model object. The model object was saved as a pickle file to be integrated into the full pipeline. Figure 6 highlights the feature importances for the final model.
-
-<figure style="width: 500px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig6.png" alt="">
-  <figcaption class="align-center">Figure 6: Feature Importances for the final Random Forest model
-</figcaption>
-</figure>
-
-## MODELING PIPELINE
-
-The app has been configured to run in two different modes: **Local** and **AWS** depending on the infrastructure requirements. Please refer to the project README for full set of instructions of how to setup the app.
-
-The following figure depicts the full modeling pipeline:
-
-<figure style="width: 600px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig7.PNG" alt="">
-  <figcaption class="align-center">Figure 7: Modeling Pipeline
-</figcaption>
-</figure>
-
-The raw data for this project has been downloaded and uploaded to an open S3 bucket. Depending on the mode, the compute engine can be a local server for mode = 'Local' or an EC2 instance for mode = 'AWS'. The compute engine will fetch the data from the S3 bucket, clean the data, generate features, train and evaluate model and launch the flask app. The model parameters are defined in `config/config.yml`. The app usage information will be logged in a sqlite database (mode = 'Local') or a RDS database (mode = 'AWS'). The usage information can be analyzed for tracking and analyzing app adoption.
-
-An user interface was developed using HTML and CSS to provide a user friendly interface to interact with the model API. The following figure depicts the UI:
-
-<figure style="width: 800px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig8_1.PNG" alt="">
-</figure>
-
-<figure style="width: 800px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig8_2.PNG" alt="">
-  <figcaption class="align-center">Figure 8: Flask app UI home page (above) and form page (below)
-</figcaption>
-</figure>
-
-## APP DEVELOPMENT ASPECTS AND LEARNINGS
-
-### MODULARITY
-Modularity refers to the extent to which a software/Web application may be divided into smaller modules. Every element of the modeling pipeline was controlled by its own submodules within the app. This allowed me to develop and test individual components independently which made debugging and scope of further development easier.
-
-### TESTING
-Unit Tests were built in to test individual functions. All tests reside in the `tests/` folder. Unit tests help us understand whether the functions are behaving as desired and help prevent untowardly bugs. It is important to have testing built in specifically in production systems to ensure that the system is behaving as desired.
-
-### LOGGING
-The default python `logging` package was used for logging purposes. All logging configurations are controlled via the`config/logging_local.conf` file. The different logging modes (`info`, `debug`, `error`) have been extensively used during development and deployment to debug and keep track of progress. Having descriptive logging messages throughout the code helped me understand what my code was doing and identify bugs, changes in functionality, input data quality, and more.
-
-### REPRODUCEABILITY
-Machine Learning solutions need to be reproduceable. This means that anyone having access to the code should be able to replicate the model performance metrics that have been reported for the model. This is important to validate the performance and gain trust and buy-in from the model consumers. In order to ensure that anyone can replicate the modeling pipeline, a `Makefile` was built to execute the entire pipeline. A Makefile is a file containing a set of directives used by a make build automation tool to generate a target/goal.
-
-## ACKNOWLEDGEMENTS
-Sincerest thanks to the following for helping me throughout the project:
-1. [Tanya Tandon](https://www.linkedin.com/in/tanya-tandon/) (QA)
-2. [Chloe Mawer](https://www.linkedin.com/in/chloemawer/) (Course Instructor)
-3. [Fausto Inestroza](https://www.linkedin.com/in/fausto-inestroza/) (Course Instructor)
-4. [Xiaofeng Zhu](https://www.linkedin.com/in/xiaofengzhu/) (Course TA)
+## TEAM MEMBERS
+1. [Arpan Venugopan](https://www.linkedin.com/in/arpan-venugopal-25312b44/)
+2. [Shreyas Sabnis](https://www.linkedin.com/in/shreyassabnis/)
+3. [Anjali Verma](https://www.linkedin.com/in/anjaliverma2896/)
+4. [Saurabh Annadate](https://www.linkedin.com/in/saurabhannadate93/)
 
 ## LINKS
-1. [Github](https://github.com/saurabhannadate93/Whats-my-House-worth)
+1. [Github](https://github.com/saurabhannadate93/ProScanner)
 
 ## REFERENCES
-1. [Exploratory Data Analysis](https://www.kaggle.com/pmarcelino/comprehensive-data-exploration-with-python)
+1. [Applications of OCR](http://www.cvisiontech.com/reference/general-information/ocr-applications.html)
+2. [IAM Handwriting Database](http://www.fki.inf.unibe.ch/databases/iam-handwriting-database)
+3. [IAM Handwriting Database Research Publication](https://link.springer.com/article/10.1007/s100320200071)
+2. [Simple HTR for handwritten word prediction](https://towardsdatascience.com/build-a-handwritten-text-recognition-system-using-tensorflow-2326a3487cd5)
+3. [Visualizing deep neural network decisions : Prediction Difference Analysis](https://arxiv.org/pdf/1702.04595.pdf)
