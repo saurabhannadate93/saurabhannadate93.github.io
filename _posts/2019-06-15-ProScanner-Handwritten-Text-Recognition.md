@@ -45,7 +45,7 @@ The IAM Handwriting Database [2] [3] was used for training the model. This datas
 The following figure depicts examples of images present in the training data.
 
 <figure style="width: 800px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/ProScanner/Fig1.PNG" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/ProScanner/Figure1.PNG" alt="">
   <figcaption class="align-center">Figure 1: Training Examples
 </figcaption>
 </figure>
