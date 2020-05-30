@@ -78,10 +78,11 @@ The following figure depicts the final model architecture:
 
 
 ## MODELING RESULTS
+The model was trained for 6 hours for 35 epochs on a GTX 960M GPU. 
+
 
 ### PERFORMANCE METRICS
-
-The model was trained for 6 hours for 35 epochs on a GTX 960M GPU. We were able to achieve a character error rate of **10.5%** which is similar to a human character rate of 11.7% (determined via a survey). The word error rate was **32.5%** indicating that although the model was able to identify most of the characters in the image, it was not very capable of correctly identifying and spelling out full words. The following charts show the model performance characteristics:
+We were able to achieve a character error rate of **10.5%** which is similar to a human character rate of 11.7% (determined via a survey). The word error rate was **32.5%** indicating that although the model was able to identify most of the characters in the image, it was not very capable of correctly identifying and spelling out full words. The following charts show the model performance characteristics:
 
 <figure style="width: 500px" class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/ProScanner/Fig3_1.PNG" alt="">
