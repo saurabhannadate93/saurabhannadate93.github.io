@@ -14,7 +14,7 @@ tags:
 classes:
     - wide
 header:
-  teaser: "assets/images/ProScanner/teaser.png"
+  teaser: "assets/images/ProScanner/teaser.jpg"
 ---
 
 <style>
