@@ -131,7 +131,7 @@ Predicted as **"Need to get AVC horewark done"**
 Pixel relevance analysis helps us understand what pixels within the original input image were more impactful than others in determining the final output. Below is a pixel relevance chart for the word *dress* from example 2 above. Red represents that the pixel was more impactful in determining the output, and blue represents that the pixel was not very relevant in determining the output. 
 
 <figure style="width: 500px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/ProScanner/Fig3_2.PNG" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/ProScanner/Fig4.PNG" alt="">
   <figcaption class="align-center">Figure 4: Pixel Relevance Chart
 </figcaption>
 </figure>
