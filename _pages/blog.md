@@ -19,7 +19,7 @@ feature_row1:
     btn_class: "btn--primary"
 
 feature_row2:
-  - image_path: assets/images/ProScanner/teaser.PNG
+  - image_path: assets/images/ProScanner/teaser.jpeg
     alt: "ProScanner - Handwritten Text Recognition using Neural Networks"
     title: "ProScanner - Handwritten Text Recognition using Neural Networks"
     excerpt: 'This blog documents my first deep learning project in which we developed a neural network model using CNNs and LSTMs for Optical Character Recognition to convert handwritten text images into digital text.'
