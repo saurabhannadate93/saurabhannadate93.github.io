@@ -42,7 +42,7 @@ Although our model was performing satisfactorily, there still are several potent
 ## DATASET
 The IAM Handwriting Database [2] [3] was used for training the model. This dataset was first published at the ICDAR in 1999. The database contains forms of unconstrained handwritten text, which were scanned at a resolution of 300dpi and saved as PNG images with 256 gray levels. 657 writers contributed handwriting samples to this database. The dataset contains 1,539 pages of scanned text, 5,685 isolated and labeled sentences, 13,353 isolated and labeled text lines and 115,320 isolated and labeled word. Our primary analysis. Our primary focus of interest was the ~13k labeled text lines which were used for training the model. The dataset contained around 80 distinct characters (lowercase, uppercase, digits, symbols).
 
-The following figure depicts examples of images present in the training data.
+The following figure depicts examples of images present in the training data:
 
 <figure style="width: 800px" class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/ProScanner/Figure1.PNG" alt="">
@@ -57,18 +57,18 @@ The dataset of ~13k observations was divided into 95% training Set (~12.4 observ
 
 ## MODEL ARCHITECTURE
 
-Our model architecture involves a model consisting of  7 CNN layers, 2 RNN (LSTM) layers and the CTC loss and a decoding layer.
+Each input training example that is fed into the CNN has a dimension of 800 X 32. Several different hyperparameter combinations (number of CNN layers, number of CNN layer features, dropout, optimization algorithm etc) were modeled to identify the best performing model. The final model architecture involves 7 CNN layers, 2 RNN (LSTM) layers and the CTC loss and a decoding layer and utilized the RMSProp optimizer.
 
 ### CONVOLUTIONAL NEURAL NETWORK (CNN) 
-CNN layers extract relevant features from the input image fed during training. The model architecture contains five convolution blocks. The first two blocks consist of two convolution layers with a filter kernel of size 5X5 and RELU activation followed by a pooling layer. The next three blocks consist of one convolution layer with a filter kernel of size 3X3 and RELU activation followed by a pooling layer. While the image height is downsized by 2 in each block, feature maps (channels) are added, so that the output feature map (or sequence) has a size of 200×256.
-
+CNN layers extract relevant features from the input image fed during training. The model architecture contains five convolution blocks. The first two blocks consist of two convolution layers with a filter kernel of size 5X5 and RELU activation followed by a pooling layer. The next three blocks consist of one convolution layer each with a filter kernel of size 3X3 and RELU activation followed by a pooling layer. While the image height is downsized by 2 in each block, feature maps (channels) are added, so that the output feature map (or sequence) has a size of 200×256.
 
 ### RECURRENT NEURAL NETORK (RNN)
-Bi-directional Long Short-Term Memory (LSTM) implementation of RNNs is used, as it is able to propagate information through longer distances and provides more robust training characteristics than vanilla RNN. The feature sequence contains 256 features per time-step, the LSTM propagates relevant information through this sequence. The RNN output sequence is mapped to a matrix of size 200×81. The IAM dataset consists of 80 different characters, further one additional character is needed for the CTC operation (CTC blank label), therefore there are 81 entries for each of the 200 time-steps. 
+Bi-directional Long Short-Term Memory (LSTM) implementation of RNNs is used, as it is able to propagate information through longer distances and provides more robust training characteristics than vanilla RNN. The feature sequence contains 256 features per time-step, the LSTM propagates relevant information through this sequence. The RNN output sequence is mapped to a matrix of size 200×81. The IAM dataset consists of 80 different characters, further one additional character is needed for the CTC operation (CTC blank label), therefore there are 81 entries for each of the 200 time-steps.
 
 ### CONNECTIONIST TEMPORAL CLASSIFICATION (CTC)
 While training the Neural Network, the CTC is given the RNN layer output matrix and the ground truth text and it computes the loss value. While inferring, the CTC is only given the matrix and it decodes it into the final text employing Word Beam Search. Both the ground truth text and the recognized text can be at most 200 characters long.
 
+The following figure depicts the final model architecture:
 
 <figure style="width: 800px" class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/ProScanner/Fig2.PNG" alt="">
@@ -76,22 +76,60 @@ While training the Neural Network, the CTC is given the RNN layer output matrix 
 </figcaption>
 </figure>
 
-#### MODEL EXPERIMENTS
 
+## MODELING RESULTS
 
+### PERFORMANCE METRICS
 
+The model was trained for 6 hours for 35 epochs on a GTX 960M GPU. We were able to achieve a character error rate of 10.5% which is similar to a human character rate of 11.7% (determined via a survey). The word error rate was 32.5% indicating that although the model was able to identify most of the characters in the image, it was not very capable of correctly identifying and spelling out full words. The following charts show the model performance characteristics:
 
+<figure style="width: 500px" class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/ProScanner/Fig3_1.PNG" alt="">
+</figure>
 
-
-
-## RESULTS
-Our final model performed significantly better to give us a character error rate of 10.5% on the test set.
-
-<figure style="width: 800px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig3.PNG" alt="">
-  <figcaption class="align-center">Figure 3: Final Character Error Rate
+<figure style="width: 500px" class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/ProScanner/Fig3_2.PNG" alt="">
+  <figcaption class="align-center">Figure 3: Final Model Performance Characteristics
 </figcaption>
 </figure>
+
+### SAMPLE OUTPUTS
+
+<figure style="width: 800px" class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/ProScanner/Ex1.PNG" alt="">
+</figure>
+
+Predicted as **by her sufferingar , he said bitterty ;**
+{: style="text-align: center;"}
+
+<figure style="width: 800px" class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/ProScanner/Ex2.PNG" alt="">
+</figure>
+
+Predicted as **at nine. Her blue drecc was new;**
+{: style="text-align: center;"}
+
+
+<figure style="width: 800px" class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/ProScanner/Ex3.PNG" alt="">
+</figure>
+
+Predicted as **take it and go..**
+{: style="text-align: center;"}
+
+
+<figure style="width: 800px" class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/ProScanner/Ex4.PNG" alt="">
+</figure>
+
+Predicted as **Need to get AVC horewark done**
+{: style="text-align: center;"}
+
+
+
+
+
+
 
 
 ## POTENTIAL NEXT STEPS
