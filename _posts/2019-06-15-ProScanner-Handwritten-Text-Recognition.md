@@ -37,7 +37,7 @@ The dataset that was used for building the model was the IAM Handwriting databas
 
 A google survey was administered to calculate the human correct recognition accuracy rate. A total of 10 random words and 10 lines were used from the model training data to gauge this. For a total of 42 responses, the overall character error  rate was 11.7% (i.e. taking into account all the characters in the 10 words and 10 lines correctly recognized by the 42 responders). For our final model, we got a character error rate of 10.5% for the validation set which is similar to the human character error rate determined.
 
-Although our model was performing satisfactorily, there still are several potential improvements that can be experimented with in order to make the model more accurate and robust. These potential improvements are discussed in the Potential Next Steps Section.
+Although our model was performing satisfactorily, there still are several potential improvements that can be experimented with in order to make the model more accurate and robust. These potential improvements are discussed in the Conclusion Section.
 
 ## DATASET
 The IAM Handwriting Database [2] [3] was used for training the model. This dataset was first published at the ICDAR in 1999. The database contains forms of unconstrained handwritten text, which were scanned at a resolution of 300dpi and saved as PNG images with 256 gray levels. 657 writers contributed handwriting samples to this database. The dataset contains 1,539 pages of scanned text, 5,685 isolated and labeled sentences, 13,353 isolated and labeled text lines and 115,320 isolated and labeled word. Our primary analysis. Our primary focus of interest was the ~13k labeled text lines which were used for training the model. The dataset contained around 80 distinct characters (lowercase, uppercase, digits, symbols).
@@ -81,7 +81,7 @@ The following figure depicts the final model architecture:
 
 ### PERFORMANCE METRICS
 
-The model was trained for 6 hours for 35 epochs on a GTX 960M GPU. We were able to achieve a character error rate of 10.5% which is similar to a human character rate of 11.7% (determined via a survey). The word error rate was 32.5% indicating that although the model was able to identify most of the characters in the image, it was not very capable of correctly identifying and spelling out full words. The following charts show the model performance characteristics:
+The model was trained for 6 hours for 35 epochs on a GTX 960M GPU. We were able to achieve a character error rate of **10.5%** which is similar to a human character rate of 11.7% (determined via a survey). The word error rate was **32.5%** indicating that although the model was able to identify most of the characters in the image, it was not very capable of correctly identifying and spelling out full words. The following charts show the model performance characteristics:
 
 <figure style="width: 500px" class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/ProScanner/Fig3_1.PNG" alt="">
@@ -100,7 +100,7 @@ The model was trained for 6 hours for 35 epochs on a GTX 960M GPU. We were able 
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/ProScanner/Ex1.PNG" alt="">
 </figure>
 
-Predicted as **by her sufferingar , he said bitterty ;**
+Predicted as **"by her sufferingar , he said bitterty ;"**
 {: style="text-align: center;"}
 
 #### EXAMPLE 2
@@ -108,7 +108,7 @@ Predicted as **by her sufferingar , he said bitterty ;**
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/ProScanner/Ex2.PNG" alt="">
 </figure>
 
-Predicted as **at nine. Her blue drecc was new;**
+Predicted as **"at nine. Her blue drecc was new;"**
 {: style="text-align: center;"}
 
 #### EXAMPLE 3
@@ -116,7 +116,7 @@ Predicted as **at nine. Her blue drecc was new;**
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/ProScanner/Ex3.PNG" alt="">
 </figure>
 
-Predicted as **take it and go..**
+Predicted as **"take it and go.."**
 {: style="text-align: center;"}
 
 #### EXAMPLE 4
@@ -124,17 +124,23 @@ Predicted as **take it and go..**
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/ProScanner/Ex4.PNG" alt="">
 </figure>
 
-Predicted as **Need to get AVC horewark done**
+Predicted as **"Need to get AVC horewark done"**
 {: style="text-align: center;"}
 
+### PIXEL RELEVANCE ANALYSIS
+Pixel relevance analysis helps us understand what pixels within the original input image were more impactful than others in determining the final output. Below is a pixel relevance chart for the word *dress* from example 2 above. Red represents that the pixel was more impactful in determining the output, and blue represents that the pixel was not very relevant in determining the output. 
 
+<figure style="width: 500px" class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/ProScanner/Fig3_2.PNG" alt="">
+  <figcaption class="align-center">Figure 4: Pixel Relevance Chart
+</figcaption>
+</figure>
 
+Here we see that the writer chose to write the ‘s’ in dress as to small upper case ‘s’s as opposed to the lower case ‘s’ as we see in the next word, ‘was’. Also we observe that the upper arcs of the ‘s’ in the word dress are accentuated. We can see that the upper arc of the first ‘s’ in dress is marked red, while the lower arc is marked blue, this means that the pixels in the upper arc contribute positively to the prediction while the ones in the lower arc contribute negatively. Given that the prediction is ‘drecc’, this makes intuitive sense.
 
+## CONCLUSION
+Our model performs well on the validation set as well as custom supplied examples. We are able to achieve a character error rate of 10.5% and a word error rate of 32.5%. While our model performance is satisfactory, there is still scope of improvement in our analysis. Firstly, our survey population of 42 respondents is very low for us to report a statistically significant result for human performance. A more extensive study needs to be conducted to determine this. Secondly, we have used a *Beam Search* as our final layer to determine the identified characters. Commercial OCRs use *Word Beam Search* to search the predicted words within the language dictionary which helps improve the character error rate. This can be implemented to improve our model performance. Thirdly, although we have handwriting samples from ~650 writers, this still is not very representative of all the handwritings that the model could encounter. Data augmentation could potentially be done to generate synthetic data so train the model on more varied handwriting samples. 
 
-
-
-
-## POTENTIAL NEXT STEPS
 
 ## TEAM MEMBERS
 1. [Arpan Venugopan](https://www.linkedin.com/in/arpan-venugopal-25312b44/)
