@@ -42,7 +42,7 @@ Although our model was performing satisfactorily, there still are several potent
 ## DATASET
 The IAM Handwriting Database [2] [3] was used for training the model. This dataset was first published at the ICDAR in 1999. The database contains forms of unconstrained handwritten text, which were scanned at a resolution of 300dpi and saved as PNG images with 256 gray levels. 657 writers contributed handwriting samples to this database. The dataset contains 1,539 pages of scanned text, 5,685 isolated and labeled sentences, 13,353 isolated and labeled text lines and 115,320 isolated and labeled word. Our primary analysis. Our primary focus of interest was the ~13k labeled text lines which were used for training the model. The dataset contained around 80 distinct characters (lowercase, uppercase, digits, symbols).
 
-The following figure depicts examples of images present in the training data:
+The following figure depicts examples of images present in the training data.
 
 <figure style="width: 800px" class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/ProScanner/Fig1.PNG" alt="">
