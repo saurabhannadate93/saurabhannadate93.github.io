@@ -19,11 +19,11 @@ feature_row1:
     btn_class: "btn--primary"
 
 feature_row2:
-  - image_path: assets/images/house_worth/teaser.jpg
-    alt: "What's my house worth? - A full stack app"
-    title: "What's my house worth? - A full stack app"
-    excerpt: 'This blog post documents my first foray into developing a full stack analytical pipeline to administer a machine learning solution including using AWS tools such as EC2, S3 and RDS for backend infrastructure and Flask for front end UI.'
-    url: "http://saurabhannadate.com/data-science/Whats-my-House-Worth/"
+  - image_path: assets/images/ProScanner/teaser.jpg
+    alt: "ProScanner - Handwritten Text Recognition using Neural Networks"
+    title: "ProScanner - Handwritten Text Recognition using Neural Networks"
+    excerpt: 'To be updated'
+    url: "http://saurabhannadate.com/data-science/ProScanner-Handwritten-Text-Recognition/"
     btn_label: "Continue Reading"
     btn_class: "btn--primary"
 
@@ -66,3 +66,5 @@ feature_row5:
 {% include feature_row id="feature_row3" type="left" %}
 
 {% include feature_row id="feature_row4" type="left" %}
+
+{% include feature_row id="feature_row5" type="left" %}
