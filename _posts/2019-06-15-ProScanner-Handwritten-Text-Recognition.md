@@ -95,6 +95,7 @@ The model was trained for 6 hours for 35 epochs on a GTX 960M GPU. We were able 
 
 ### SAMPLE OUTPUTS
 
+#### EXAMPLE 1
 <figure style="width: 800px" class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/ProScanner/Ex1.PNG" alt="">
 </figure>
@@ -102,6 +103,7 @@ The model was trained for 6 hours for 35 epochs on a GTX 960M GPU. We were able 
 Predicted as **by her sufferingar , he said bitterty ;**
 {: style="text-align: center;"}
 
+#### EXAMPLE 2
 <figure style="width: 800px" class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/ProScanner/Ex2.PNG" alt="">
 </figure>
@@ -109,15 +111,15 @@ Predicted as **by her sufferingar , he said bitterty ;**
 Predicted as **at nine. Her blue drecc was new;**
 {: style="text-align: center;"}
 
-
-<figure style="width: 800px" class="align-center">
+#### EXAMPLE 3
+<figure style="width: 500px" class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/ProScanner/Ex3.PNG" alt="">
 </figure>
 
 Predicted as **take it and go..**
 {: style="text-align: center;"}
 
-
+#### EXAMPLE 4
 <figure style="width: 800px" class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/ProScanner/Ex4.PNG" alt="">
 </figure>
