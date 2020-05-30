@@ -1,5 +1,5 @@
 ---
-title: "What's my house worth? - A full stack app"
+title: "What's my house worth? - Building a full stack Flask app"
 last_modified_at: 2019-06-15T17:00:00-00:00
 categories:
   - data-science
