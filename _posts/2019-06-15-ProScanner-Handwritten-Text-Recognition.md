@@ -24,7 +24,10 @@ figcaption {
 
 </style>
 
-This blog post documents my first foray into developing a full stack analytical pipeline to administer a machine learning solution including using AWS tools such as *EC2, S3* and *RDS* for backend infrastructure and *Flask* for front end UI. Furthermore, through this project, I got exposure to several good software engineering practices like *testing, modularility, reproducibility, logging, managing dependencies, versioning* and *agile software development paradigm*.
+This blog post documents my first foray into developing a deep learning solution including frameworkslike Convolutional Neural Networks and Recurrent Neural Networks to convert handwritten notes to digital text. 
+
+
+developing a full stack analytical pipeline to administer a machine learning solution including using AWS tools such as *EC2, S3* and *RDS* for backend infrastructure and *Flask* for front end UI. Furthermore, through this project, I got exposure to several good software engineering practices like *testing, modularility, reproducibility, logging, managing dependencies, versioning* and *agile software development paradigm*.
 
 <figure style="width: 800px" class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/house_sale.PNG" alt="">
