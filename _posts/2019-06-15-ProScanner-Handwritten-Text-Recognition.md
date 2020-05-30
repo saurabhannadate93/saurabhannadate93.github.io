@@ -28,8 +28,6 @@ This blog documents my first deep learning project in which we developed a neura
 
 <figure style="width: 800px" class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/ProScanner/header.png" alt="">
-  <figcaption class="align-center">(Image for illustration purposes only)
-</figcaption>
 </figure>
 
 ## INTRODUCTION
@@ -47,7 +45,7 @@ The IAM Handwriting Database [2] [3] was used for training the model. This datas
 The following figure depicts examples of images present in the training data:
 
 <figure style="width: 800px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig1.PNG" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/ProScanner/Fig1.PNG" alt="">
   <figcaption class="align-center">Figure 1: Training Examples
 </figcaption>
 </figure>
@@ -73,7 +71,7 @@ While training the Neural Network, the CTC is given the RNN layer output matrix 
 
 
 <figure style="width: 800px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/house_worth/Fig2.PNG" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/ProScanner/Fig2.PNG" alt="">
   <figcaption class="align-center">Figure 2: Model Architecture
 </figcaption>
 </figure>
