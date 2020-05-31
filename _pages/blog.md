@@ -18,7 +18,17 @@ feature_row1:
     btn_label: "Continue Reading"
     btn_class: "btn--primary"
 
-feature_row2:
+feature_row4:
+  - image_path: assets/images/lm/teaser.jpg
+    alt: "Language Modeling of Gutenberg Corpus"
+    title: "Language Modeling of Gutenberg Corpus"
+    excerpt: 'To be updated'
+    url: "http://saurabhannadate.com/data-science/Language-modeling-gutenberg-corpus/"
+    btn_label: "Continue Reading"
+    btn_class: "btn--primary"
+
+
+feature_row4:
   - image_path: assets/images/ProScanner/teaser.jpeg
     alt: "ProScanner - Handwritten Text Recognition using Neural Networks"
     title: "ProScanner - Handwritten Text Recognition using Neural Networks"
@@ -27,7 +37,7 @@ feature_row2:
     btn_label: "Continue Reading"
     btn_class: "btn--primary"
 
-feature_row3:
+feature_row5:
   - image_path: assets/images/house_worth/teaser.jpg
     alt: "What's my house worth? - Building a full stack Flask app"
     title: "What's my house worth? - Building a full stack Flask app"
@@ -37,7 +47,7 @@ feature_row3:
     btn_class: "btn--primary"
 
 
-feature_row4:
+feature_row6:
   - image_path: assets/images/hotel_review/hotelimage.jpg
     alt: "Luxury European Hotels: Predicting Guest Review Scores Based on Hotel Reviews"
     title: "Luxury European Hotels: Predicting Guest Review Scores Based on Hotel Reviews"
@@ -46,7 +56,7 @@ feature_row4:
     btn_label: "Continue Reading"
     btn_class: "btn--primary"
 
-feature_row5:
+feature_row7:
   - image_path: /assets/images/bookstore/bookstore.jpg
     alt: "Helping an Online bookstore quantify the impact of their promotion strategy"
     title: "Helping an Online bookstore quantify the impact of their promotion strategy"
@@ -63,8 +73,10 @@ feature_row5:
 
 {% include feature_row id="feature_row2" type="left" %}
 
-{% include feature_row id="feature_row3" type="left" %}
-
 {% include feature_row id="feature_row4" type="left" %}
 
 {% include feature_row id="feature_row5" type="left" %}
+
+{% include feature_row id="feature_row6" type="left" %}
+
+{% include feature_row id="feature_row7" type="left" %}
