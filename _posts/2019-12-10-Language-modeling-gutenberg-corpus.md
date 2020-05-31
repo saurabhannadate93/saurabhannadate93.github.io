@@ -100,23 +100,56 @@ Dropout of 0.3 and a l2 penalty of 0.0003 was used in all neural net models. All
 ### N-GRAM MODELS
 Table 1 shows the Train Time and the Model size for the N-Gram models. As it is seen, the models do not take substantial time to fit, however as the N count increases, the model parameters and hence the model size increases exponentially. As it is noted before, since our model does not incorporate any smoothing, we are unable to report any performance metrics like perplexity.
 
-| Model	| N-Grams	| Train Time	| Model Size |
+| Model | N-Grams | Train Time | Model Size |
 |----|----|----|----|
-| Model 1	| 2	| 8min | 110mb |
-| Model 2	| 3	| 14min	| 513mb |
-| Model 3	| 4	| 23min	| 1.40gb |
-| Model 4	| 5	| 34min	| 2.81gb |
+| Model 1 | 2 | 8min | 110mb |
+| Model 2 | 3 | 14min | 513mb |
+| Model 3 | 4 | 23min | 1.40gb |
+| Model 4 | 5 | 34min | 2.81gb |
+
+### CHARACTER LEVEL NEURAL NET
+Table 2 contains the details for the various character level neural net models trained and their performance metrics. As it is seen, the best performing model after 5 epochs is the model with two LSTM layers having 1024 hidden units. One important point to note is that this model has the highest number of parameters and took the most amount of time to train.
+
+| Model | LSTM/GRU | Hidden Units | RNN Layers | # of params | Train Time (5 Epochs) | Val cross-entropy |
+|----|----|----|----|----|----|----|
+| Model 1 | LSTM | 256 | 2 | 980,125 | 3hrs 15min | 1.61 |
+| Model 2 | LSTM | 1,024 | 2 | 13,296,541 | 8hrs 40min | 1.56 |
+| Model 3 | LSTM | 256 | 5 | 2,556,061 | 7hrs 26min | 1.68 |
+| Model 4 | GRU | 256 | 2 | 750,237 | 2hrs 20min | 1.63 |
+| Model 5 | GRU | 1,024 | 2 | 10,017,693 | 6hrs 16min | 1.70 |
+| Model 6 | GRU | 256 | 5 | 1,932,189 | 7hrs 21min | 2.19 |
+
+### WORD LEVEL NEURAL NET
+Table 3 contains the details for the various word level neural net models trained and their performance metrics. As it is seen, the best performing model after 5 epochs is the model with two LSTM layers having 1024 hidden units. While this model also contains the maximum number of parameters, this model is not the most time-consuming model to train which is the model with GRU units.
+
+| Model | LSTM/GRU | Hidden Units | RNN Layers | # of params | Train Time (5 Epochs) | Val mse |
+|----|----|----|----|----|----|----|
+| Model 1 | LSTM | 256 | 2 | 1,172,780 | 4hrs 24min | 0.0197906 |
+| Model 2 | LSTM | 1,024 | 2 | 14,127,404 | 8hrs 58min | 0.0197046 |
+| Model 3 | LSTM | 256 | 5 | 2,748,716 | 10hrs 24min | 0.0199531 |
+| Model 4 | GRU | 256 | 2 | 898,860 | 3hrs 50min | 0.0198417 |
+| Model 5 | GRU | 1,024 | 2 | 10,672,428 | 6hrs 54min | 0.0197907 |
+| Model 6 | GRU | 256 | 5 | 2,080,812 | 6hrs 6min | 0.0199277 |
 
 
+## DISCUSSION
+Literature review mentioned that for N-Gram  models, as we increase the N count, the performance improves. This was not necessarily observed in our case. A 2-Gram model output looked like - **“All at once, I saw two figures: one a little man who was stumping along eastward at a good walk, and the other a girl of maybe eight or ten who was running as hard as she was able down a cross street** *. , ( p. 212 . , him , I have law , hollowed out very characteristic was his keeping a road , and Aline and who would not , whose support the animus , broad stone from the broad enough to the sea-like arena to belong to mention another man himself with Jeremiah , “ corporal , and most common faith , protected . ] rears me tell me not so it , let it more importance usually calm of the lives , THESE two daughters , and more new , '' ,  The right , for in the”*  where the text in bold is input and the text in italics is the predicted output predicting for 100 words. The same input did not yield any output for models trained on longer sequences. The primary reason for this was that we did not implement any smoothing and the model could not assign probabilities to sequences it had not seen and hence predicted nothing.
 
+The 2-layer LSTM network with 1,024 hidden units performed the best for both the character as well as the word level neural net models. However, a quick look at some of the results extracted from these models revealed that the models had not really converged and learnt the intricate structures and the long-term dependencies. For instance, an output of the character level neural net model looks like: “**All at once, I saw two figures: one a little man who was stumping along eastward at a good walk, and the other a girl of maybe eight or ten who was running as hard as she was able down a cross street.** *In the Duke of Bedford and Lord Holland was a man of the same time to the same time to the same time to the same time to the contempt of the House of Commons, and the contempt was the same time to the*”. Similarly, an output of the best word level neural net model is “**All at once, I saw two figures: one a little man who was stumping along eastward at a good walk, and the other a girl of maybe eight or ten who was running as hard as she was able down a cross street. Well, sir, the two ran into one another naturally enough at the corner; and then came the horrible part of the thing; for the man trampled calmly over the childs body and left her screaming on the ground. It sounds nothing to hear, but it was hellish to see. It wasn't like a man; it was like some damned Juggernaut. I gave a few halloa, took to my heels, collared my gentleman, and brought him back to where there was already quite a group about the screaming child. He was perfectly cool and made no resistance, but gave me one look, so ugly that it brought out the sweat on me like running.** *'' : that s and and and and and and and and and and and and and and and and and and and and and and and and and and and and and and and and and and and and and and and and and and and and and and*”. Overall, for the same parameters, the character level neural net performs better than the word level neural net. As it is seen, the models have learnt the word structures, however have not yet learnt the sentences semantics and will have to be trained for longer epochs for better performances.
 
-
-
-
-
-
+As a few next steps to improve the models, it is recommended that smoothing be introduced in the N-gram models and the neural network models be trained for longer epochs so that they are able to learn the intricacies of the language semantics and perform better.
 
 ## LINKS
 1. [Github](https://github.com/saurabhannadate93/Text-Analytics-Language-Modeling)
 
 ## REFERENCES
+[1] Mikolov, Tomas, Karafi´at, Martin, Burget, Lukas, Cernock`y, Jan, and Khudanpur, Sanjeev. Recurrent neural network based language model. In INTERSPEECH, volume 2, pp. 3, 2010.
+[2] Arisoy, Ebru, Sainath, Tara N, Kingsbury, Brian, and Ramabhadran, Bhuvana. Deep neural network language models. In Proceedings of the NAACL-HLT 2012 Workshop: Will We Ever Really Replace the N-gram Model? On the Future of Language Modeling for HLT, pp. 20–28. Association for Computational Linguistics, 2012.
+[3] Rush, Alexander M, Chopra, Sumit, and Weston, Jason. A neural attention model for abstractive sentence summarization. arXiv preprint arXiv:1509.00685, 2015.
+[4] Filippova, Katja, Alfonseca, Enrique, Colmenares, Carlos A, Kaiser, Lukasz, and Vinyals, Oriol. Sentence compression by deletion with lstms. In Proceedings of the 2015 Conference on Empirical Methods in Natural Language Processing, pp. 360–368, 2015.
+[5] Schwenk, Holger, Rousseau, Anthony, and Attik, Mohammed. Large, pruned or continuous space language models on a gpu for statistical machine translation. In Proceedings of the NAACL-HLT 2012 Workshop: Will We Ever Really Replace the N-gram Model? On the Future of Language Modeling for HLT, pp. 11–19. Association for Computational Linguistics, 2012.
+[6] Advances in neural information processing systems, pp. 3104–3112, 2014. Vaswani, Ashish, Zhao, Yinggong, Fossum, Victoria, and Chiang, David. Decoding with large-scale neural language models improves translation. Citeseer.
+[7] Srivastava, Nitish, Mansimov, Elman, and Salakhutdinov, Ruslan. Unsupervised learning of video representations using lstms. arXiv preprint arXiv:1502.04681, 2015a.
+[8] Mikolov, Tom´aˇs. Statistical language models based on neural networks. Presentation at Google, Mountain View, 2nd April, 2012.
+[9] Gers, Felix A, Schmidhuber, J¨urgen, and Cummins, Fred. Learning to forget: Continual prediction with lstm. Neural computation, 12(10):2451–2471, 2000.
+[10] Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg Corrado, and Jeffrey Dean. 2013b. Distributed representations of words and phrases and their compositionality. In NIPS, pages 3111–3119. 
