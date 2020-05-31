@@ -18,7 +18,7 @@ feature_row1:
     btn_label: "Continue Reading"
     btn_class: "btn--primary"
 
-feature_row4:
+feature_row2:
   - image_path: assets/images/lm/teaser.jpg
     alt: "Language Modeling of Gutenberg Corpus"
     title: "Language Modeling of Gutenberg Corpus"
