@@ -91,7 +91,23 @@ Figure 1 depicts the model architecture used for character level neural net mode
 </figcaption>
 </figure>
 
+### WORD LEVEL NEURAL NET
+The biggest challenge with constructing a word level neural net is that the final softmax layer needs to predict over the entire vocab which may contain millions of words and hence becomes computationally intensive. Although there are techniques to count this like Noise Contrastive Estimation (NCE) loss, self-normalizing partition functions, or hierarchical softmax, we decided to adopt a slightly different approach. Instead of modelling the probability of the next word, we modelled the word embeddings. Figure 2 shows the model architecture. First, a word2vec model is fit on the entire training corpus. A sequence of 128 words is passed through the word2vec model to get the embeddings which form the input for the neural net model. This is followed by two or more recurrent neural network layers with varying hidden states. The final layer is a tanh dense layer of dimension 300 which predicts the embedding of the next word. The loss which is optimized for is mean square error.  Different model architectures are constructed by varying the number of hidden states of the RNN, number of RNN layers as well as type of RNN unit (LSTM or GRU). All the models are trained for 5 epochs and the training time and validation mse is recorded.
 
+### TRAINING PROCEDURE
+Dropout of 0.3 and a l2 penalty of 0.0003 was used in all neural net models. All models were trained in batches of 250 for a total of 5 epochs on a GeForce GTX 1080 8gb dedicated GPU.
+
+## RESULTS
+
+### N-GRAM MODELS
+Table 1 shows the Train Time and the Model size for the N-Gram models. As it is seen, the models do not take substantial time to fit, however as the N count increases, the model parameters and hence the model size increases exponentially. As it is noted before, since our model does not incorporate any smoothing, we are unable to report any performance metrics like perplexity.
+
+| Model	| N-Grams	| Train Time	| Model Size |
+|----|----|----|----|
+| Model 1	| 2	| 8min | 110mb |
+| Model 2	| 3	| 14min	| 513mb |
+| Model 3	| 4	| 23min	| 1.40gb |
+| Model 4	| 5	| 34min	| 2.81gb |
 
 
 
