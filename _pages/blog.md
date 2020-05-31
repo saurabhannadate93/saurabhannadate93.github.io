@@ -22,7 +22,7 @@ feature_row2:
   - image_path: assets/images/lm/teaser.jpg
     alt: "Language Modeling of Gutenberg Corpus"
     title: "Language Modeling of Gutenberg Corpus"
-    excerpt: 'To be updated'
+    excerpt: 'As a part of the final course project for Text Analytics, I decided to build language models using the freely available Gutenberg corpus. This blogs documents the experiments and findings of this project.'
     url: "http://saurabhannadate.com/data-science/Language-modeling-gutenberg-corpus/"
     btn_label: "Continue Reading"
     btn_class: "btn--primary"
