@@ -25,10 +25,8 @@ figcaption {
 
 As a part of the final course project for Text Analytics, I decided to build language models using the freely available Gutenberg corpus. This blogs documents the experiments and findings of this project
 
-<figure style="width: 800px" class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/lm/teaser.jpg" alt="">
-  <figcaption class="align-center">Image for illlustration purposes only
-</figcaption>
+<figure style="width: 600px" class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/lm/languages.png" alt="">
 </figure>
 
 In this project, I explore three model architectures which include statistical N-gram models and two Recurrent Neural Network architectures for large scale language modelling. A subset of the Gutenberg eBooks corpora was used as the corpus on which the models were fit. Several hyperparameters were tested and the performance metrics as well as the training time for the models were recorded and analyzed. Due to the difference in the architectures, the model performance metrics cannot directly be compared amongst the different architectures.
@@ -85,7 +83,7 @@ We trained four N-Gram models for N = 2, 3, 4 and 5 using NLTK lm module. This b
 ### CHARACTER LEVEL NEURAL NET
 Figure 1 depicts the model architecture used for character level neural net model. The input is a sequence of 128 characters and the model aims to predict the next character. The model consists of a Keras embedding layer which creates embeddings of dimension 128 for the input characters. This is followed by two or more recurrent neural network layers with varying hidden states. The final layer is a softmax dense layer over the entire character set which calculates the probability of the next character. There are 157 unique characters in our training set over which the model calculates the probability. Different model architectures are constructed by varying the number of hidden states of the RNN, number of RNN layers as well as type of RNN unit (LSTM or GRU). The loss that is minimized is categorical cross-entropy. All the models are trained for 5 epochs and the training time and validation cross entropy is recorded.
 
-<figure style="width: 800px" class="align-center">
+<figure style="width: 600px" class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/lm/Fig1.png" alt="">
   <figcaption class="align-center">Figure 1 : Character Level Neural Net model architecture
 </figcaption>
