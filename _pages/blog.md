@@ -19,7 +19,7 @@ feature_row1:
     btn_class: "btn--primary"
 
 feature_row2:
-  - image_path: assets/images/lm/languages.png
+  - image_path: assets/images/lm/teaser.jpg
     alt: "Language Modeling of Gutenberg Corpus"
     title: "Language Modeling of Gutenberg Corpus"
     excerpt: 'As a part of the final course project for Text Analytics, I decided to build language models using the freely available Gutenberg corpus. This blogs documents the experiments and findings of this project.'
