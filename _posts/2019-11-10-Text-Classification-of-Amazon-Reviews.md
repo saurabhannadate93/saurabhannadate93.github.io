@@ -14,7 +14,7 @@ tags:
 classes:
     - wide
 header:
-  teaser: "assets/images/tc/teaser.jpg"
+  teaser: "assets/images/tc/header.jpg"
 ---
 
 <style>
