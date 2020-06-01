@@ -28,6 +28,17 @@ feature_row2:
     btn_class: "btn--primary"
 
 
+feature_row3:
+  - image_path: assets/images/tc/teaser.jpg
+    alt: "Text Classification of Amazon Reviews"
+    title: "Text Classification of Amazon Reviews"
+    excerpt: 'I built four different models including Logistic Regression, SVM, fasttext and CNN using methodologies like TF-IDF, word2vec to classify Amazon Reviews as positive or negative.'
+    url: "http://saurabhannadate.com/data-science/Text-Classification-of-Amazon-Reviews/"
+    btn_label: "Continue Reading"
+    btn_class: "btn--primary"
+
+
+
 feature_row4:
   - image_path: assets/images/ProScanner/teaser.jpeg
     alt: "ProScanner - Handwritten Text Recognition using Neural Networks"
@@ -72,6 +83,8 @@ feature_row7:
 {% include feature_row id="feature_row1" type="left" %}
 
 {% include feature_row id="feature_row2" type="left" %}
+
+{% include feature_row id="feature_row3" type="left" %}
 
 {% include feature_row id="feature_row4" type="left" %}
 
