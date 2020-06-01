@@ -19,8 +19,8 @@ header:
 
 <style>
 figcaption {
-}
   text-align: center;
+}
 
 </style>
 
@@ -106,17 +106,6 @@ Prediction APIs were built for the SVM and CNN models to predict the label for a
 
 ### Example 1:
 
-**Review Text**: **
-
-**Ground Truth**: 
-
-**SVM Prediction**:
-
-**CNN Prediction**:
-
-
-### Example 1:
-
 **Review Text**: *RatingI have had these for a while now and wanted to try them out before posting a review. All I can is that they are worth it and have definitely outlasted other shoes I have had. I am always hiking, jogging or walking my pups and these shoes are still holding on strong. Definitely recommend these. That photo I posted is of the shoes is after months of activities and they still have grip and look good.*
 
 **Ground Truth**: 5
@@ -159,7 +148,7 @@ Prediction APIs were built for the SVM and CNN models to predict the label for a
 **CNN Prediction**: "label": "1", "probability": "0.6297459"
 
 
-### Example 1:
+### Example 5:
 
 **Review Text**: *For under $20 dollars I wasn't expecting too much. When I first started using the buds everything worked out fine, sound was a little muddy bass and mids are the focus for these buds. After a few days the earbuds would suddenly stop playing music, I would have to manual hit play on my phone which isn't a deal breaker but then the left bud would intermittently stop and start again, this is the reason I returned these buds. I must have gotten a bad set since there's so many positive reviews on these and I have owned several Blueido headphones without issues. I might get another set but I think I will do more research before buying my next set of wirless earbuds.*
 
