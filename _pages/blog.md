@@ -29,14 +29,13 @@ feature_row2:
 
 
 feature_row3:
-  - image_path: assets/images/tc/teaser.jpg
+  - image_path: assets/images/tc/teaser.png
     alt: "Text Classification of Amazon Reviews"
     title: "Text Classification of Amazon Reviews"
     excerpt: 'I built four different models including Logistic Regression, SVM, fasttext and CNN using methodologies like TF-IDF, word2vec to classify Amazon Reviews as positive or negative.'
     url: "http://saurabhannadate.com/data-science/Text-Classification-of-Amazon-Reviews/"
     btn_label: "Continue Reading"
     btn_class: "btn--primary"
-
 
 
 feature_row4:
