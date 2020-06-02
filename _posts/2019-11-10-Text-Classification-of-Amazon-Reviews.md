@@ -106,7 +106,7 @@ Prediction APIs were built for the SVM and CNN models to predict the label for a
 
 ### Example 1:
 
-**Review Text**: *RatingI have had these for a while now and wanted to try them out before posting a review. All I can is that they are worth it and have definitely outlasted other shoes I have had. I am always hiking, jogging or walking my pups and these shoes are still holding on strong. Definitely recommend these. That photo I posted is of the shoes is after months of activities and they still have grip and look good.*
+**Review Text**: *I have had these for a while now and wanted to try them out before posting a review. All I can is that they are worth it and have definitely outlasted other shoes I have had. I am always hiking, jogging or walking my pups and these shoes are still holding on strong. Definitely recommend these. That photo I posted is of the shoes is after months of activities and they still have grip and look good.*
 
 **Ground Truth**: 5
 
@@ -117,7 +117,7 @@ Prediction APIs were built for the SVM and CNN models to predict the label for a
 
 ### Example 2:
 
-**Review Text**: *5At first we were sent wrong size in one of the five shirts but I thought not too big of a deal was just a little big. But then only after a week wearing the shirts they are now tearing apart at the inseams. Armpit and sides on all shirts are tearing apart. This is not good quality at all. Never had this happen before and have purchased long sleeves in this material for my husband here at Amazon but not this brand or company here. Not worth the $30 we paid. I can’t send back used items that are falling apart due to poor workmanship and quality. and it will only let me put in defected item but then I have to return it says. That’s rediculous, can’t they see with the fotos the poor quality for just a week after being worn. I’m not wasting time on sending these back. Why would they want worn shirts back that were clearly made with poor quality and defects. This is my first complaint ever with amazon and I have purchased many items over the years. So you know it is bad.*
+**Review Text**: *At first we were sent wrong size in one of the five shirts but I thought not too big of a deal was just a little big. But then only after a week wearing the shirts they are now tearing apart at the inseams. Armpit and sides on all shirts are tearing apart. This is not good quality at all. Never had this happen before and have purchased long sleeves in this material for my husband here at Amazon but not this brand or company here. Not worth the $30 we paid. I can’t send back used items that are falling apart due to poor workmanship and quality. and it will only let me put in defected item but then I have to return it says. That’s rediculous, can’t they see with the fotos the poor quality for just a week after being worn. I’m not wasting time on sending these back. Why would they want worn shirts back that were clearly made with poor quality and defects. This is my first complaint ever with amazon and I have purchased many items over the years. So you know it is bad.*
 
 **Ground Truth**: 1
 
@@ -128,7 +128,7 @@ Prediction APIs were built for the SVM and CNN models to predict the label for a
 
 ### Example 3:
 
-**Review Text**: *1I was really looking forward to these boots. Purchased a 12, I am a 12 in every shoe I own. The boot looks awesome and felt well made. When I put them on they seemed to be"longer" than I am used to. I checked the stamp on the inside and it was correctly stamped 12. But these boots were clearly larger, maybe even by a whole size. Returned item. Take caution when purchasing and read return policy. As a Prime member the description said free returns, when I picked my size, that option seemingly disappeared. Only valid if fulfilled by Amazon, be aware.*
+**Review Text**: *I was really looking forward to these boots. Purchased a 12, I am a 12 in every shoe I own. The boot looks awesome and felt well made. When I put them on they seemed to be"longer" than I am used to. I checked the stamp on the inside and it was correctly stamped 12. But these boots were clearly larger, maybe even by a whole size. Returned item. Take caution when purchasing and read return policy. As a Prime member the description said free returns, when I picked my size, that option seemingly disappeared. Only valid if fulfilled by Amazon, be aware.*
 
 **Ground Truth**: 3
 
@@ -139,7 +139,7 @@ Prediction APIs were built for the SVM and CNN models to predict the label for a
 
 ### Example 4:
 
-**Review Text**: *3The boots are very nice if you keep in mind that they are NOT work boots. More like a sneakers that look like boots. The leather is super soft and not waterproof. I treated mine with Sno-seal for waterproofing, it works but completely changes the look of the boot. The size is way off, you should follow timberland’s advice and order a full size smaller. I usually wear 9.5-10 and ordered a 9, it could have been a bit smaller. Also, the boot has almost no arch support so you will need an insole if you are flat footed like me. Other than that they are very comfy.*
+**Review Text**: *The boots are very nice if you keep in mind that they are NOT work boots. More like a sneakers that look like boots. The leather is super soft and not waterproof. I treated mine with Sno-seal for waterproofing, it works but completely changes the look of the boot. The size is way off, you should follow timberland’s advice and order a full size smaller. I usually wear 9.5-10 and ordered a 9, it could have been a bit smaller. Also, the boot has almost no arch support so you will need an insole if you are flat footed like me. Other than that they are very comfy.*
 
 **Ground Truth**: 4
 
